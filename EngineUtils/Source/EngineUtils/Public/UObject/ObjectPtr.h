@@ -7,6 +7,7 @@
 #include "UObject/Class.h"
 #include "UObject/Object.h"
 #include "UObject/ObjectHandle.h"
+#include "Containers/ContainerElementTypeCompatibility.h"
 
 #include <type_traits>
 
@@ -127,7 +128,7 @@ public:
 
 	FORCEINLINE bool IsResolved() const { return IsObjectHandleResolved(Handle); }
 
-	COREUOBJECT_API FString GetPath() const;
+	ENGINEUTILS_API/*COREUOBJECT_API*/ FString GetPath() const;
 
 	FORCEINLINE FObjectHandle GetHandle() const { return Handle; }
 	FORCEINLINE FObjectHandle& GetHandleRef() const { return Handle; }

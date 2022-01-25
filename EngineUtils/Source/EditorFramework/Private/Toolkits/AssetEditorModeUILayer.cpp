@@ -19,7 +19,7 @@
 #include "Widgets/Input/SCheckBox.h"
 #include "Widgets/Layout/SWidgetSwitcher.h"
 #include "Widgets/Layout/SUniformWrapPanel.h"
-#include "StatusBarSubsystem.h"
+//#include "StatusBarSubsystem.h"
 #include "Widgets/Layout/SScrollBox.h"
 #include "Widgets/Layout/SExpandableArea.h"
 #include "WorkspaceMenuStructure.h"
@@ -103,8 +103,8 @@ void FAssetEditorModeUILayer::RegisterModeTabSpawner(const FName TabID)
 	GetTabManager()->RegisterTabSpawner(TabID,
 		FOnSpawnTab::CreateSP(this, &FAssetEditorModeUILayer::SpawnStoredTab, TabID),
 		FCanSpawnTab::CreateSP(this, &FAssetEditorModeUILayer::CanSpawnStoredTab, TabID))
-		.SetDisplayNameAttribute(MakeAttributeSP(this, &FAssetEditorModeUILayer::GetTabSpawnerName, TabID))
-		.SetTooltipTextAttribute(MakeAttributeSP(this, &FAssetEditorModeUILayer::GetTabSpawnerTooltip, TabID))
+		//.SetDisplayNameAttribute(MakeAttributeSP(this, &FAssetEditorModeUILayer::GetTabSpawnerName, TabID))
+		//.SetTooltipTextAttribute(MakeAttributeSP(this, &FAssetEditorModeUILayer::GetTabSpawnerTooltip, TabID))
 		.SetIcon(GetTabSpawnerIcon(TabID))
 		.SetAutoGenerateMenuEntry(bShowMenuOption)
 		.SetGroup(MenuGroup);

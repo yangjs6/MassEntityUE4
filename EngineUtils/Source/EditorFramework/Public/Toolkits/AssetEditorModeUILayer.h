@@ -11,7 +11,7 @@
 #include "Editor.h"
 #include "ILevelEditor.h"
 #include "Misc/NotifyHook.h"
-#include "StatusBarSubsystem.h"
+//#include "StatusBarSubsystem.h"
 #include "Framework/Docking/LayoutExtender.h"
 #include "Framework/Docking/TabManager.h"
 #include "AssetEditorModeUILayer.generated.h"
@@ -21,6 +21,35 @@ class SBorder;
 class IToolkit;
 class SDockTab;
 class ILevelEditor;
+
+struct EDITORFRAMEWORK_API FMinorTabConfig
+{
+public:
+	FMinorTabConfig()
+	{
+	}
+
+	FMinorTabConfig(const FName& InTabID)
+		: TabId(InTabID)
+	{
+	}
+
+	FName TabId;
+
+	FText TabLabel;
+
+	FText TabTooltip;
+
+	FSlateIcon TabIcon;
+
+	FOnSpawnTab OnSpawnTab;
+
+	FCanSpawnTab CanSpawnTab;
+
+	FOnFindTabToReuse OnFindTabToReuse;
+
+	TSharedPtr<FWorkspaceItem> WorkspaceGroup;
+};
 
 UCLASS()
 class EDITORFRAMEWORK_API UAssetEditorUISubsystem : public UEditorSubsystem
@@ -63,7 +92,8 @@ public:
 	}
 	virtual const FName GetStatusBarName() const
 	{
-		return ToolkitHost->GetStatusBarName();
+		static const FName Temp; return Temp;
+		//return ToolkitHost->GetStatusBarName();
 	}
 
 protected:

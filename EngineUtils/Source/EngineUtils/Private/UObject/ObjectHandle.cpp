@@ -149,7 +149,7 @@ namespace ObjectHandle_Private
 			{
 				PackageData = &GObjectHandleIndex.PackageData.AddDefaulted_GetRef();
 				PackageData->PackageName = NameToMinimalName(PackageName);
-				GCoreObjectHandlePackageDebug = reinterpret_cast<FObjectHandlePackageDebugData*>(GObjectHandleIndex.PackageData.GetData());
+				//GCoreObjectHandlePackageDebug = reinterpret_cast<FObjectHandlePackageDebugData*>(GObjectHandleIndex.PackageData.GetData());
 			}
 			else
 			{
@@ -313,7 +313,7 @@ static inline UPackage* FindOrLoadPackage(FName PackageName, int32 LoadFlags)
 	// @TODO: OBJPTR: Want to replicate the functional path of an import here.  See things like FindImportFast in BlueprintSupport.cpp
 	// 		 for additional behavior that we're not handling here yet.
 	FName* ScriptPackageName = FPackageName::FindScriptPackageName(PackageName);
-	UPackage* TargetPackage = (UPackage*)StaticFindObjectFastInternal(UPackage::StaticClass(), nullptr, PackageName);
+	UPackage* TargetPackage = (UPackage*)StaticFindObjectFast(UPackage::StaticClass(), nullptr, PackageName);
 	if (UObjectRedirector* Redirector = dynamic_cast<UObjectRedirector*>(TargetPackage))
 	{
 		TargetPackage = (UPackage*)Redirector->DestinationObject;
@@ -345,7 +345,7 @@ UClass* ResolveObjectRefClass(const FObjectRef& ObjectRef, uint32 LoadFlags /*= 
 
 		if (!ObjectRef.ClassName.IsNone())
 		{
-			ClassObject = (UClass*)StaticFindObjectFastInternal(UClass::StaticClass(), ClassPackage, ObjectRef.ClassName);
+			ClassObject = (UClass*)StaticFindObjectFast(UClass::StaticClass(), ClassPackage, ObjectRef.ClassName);
 			if (ClassObject)
 			{
 				if (UObjectRedirector* Redirector = dynamic_cast<UObjectRedirector*>(ClassObject))
@@ -412,7 +412,7 @@ UObject* ResolveObjectRef(const FObjectRef& ObjectRef, uint32 LoadFlags /*= LOAD
 	for (int32 ObjectPathIndex = 0; ObjectPathIndex < ResolvedNames.Num(); ++ObjectPathIndex)
 	{
 		UObject* PreviousOuter = CurrentObject;
-		CurrentObject = StaticFindObjectFastInternal(nullptr, CurrentObject, ResolvedNames[ObjectPathIndex]);
+		CurrentObject = StaticFindObjectFast(nullptr, CurrentObject, ResolvedNames[ObjectPathIndex]);
 		if (UObjectRedirector* Redirector = dynamic_cast<UObjectRedirector*>(CurrentObject))
 		{
 			CurrentObject = Redirector->DestinationObject;
@@ -431,7 +431,7 @@ UObject* ResolveObjectRef(const FObjectRef& ObjectRef, uint32 LoadFlags /*= LOAD
 				TGraphTask<FFullyLoadPackageOnHandleResolveTask>::CreateTask().ConstructAndDispatchWhenReady(TargetPackage)->Wait();
 			}
 
-			CurrentObject = StaticFindObjectFastInternal(nullptr, PreviousOuter, ResolvedNames[ObjectPathIndex]);
+			CurrentObject = StaticFindObjectFast(nullptr, PreviousOuter, ResolvedNames[ObjectPathIndex]);
 			if (UObjectRedirector* Redirector = dynamic_cast<UObjectRedirector*>(CurrentObject))
 			{
 				CurrentObject = Redirector->DestinationObject;
@@ -474,9 +474,9 @@ UObject* ResolvePackedObjectRef(FPackedObjectRef PackedObjectRef, uint32 LoadFla
 }
 
 #if UE_WITH_OBJECT_HANDLE_TRACKING
-COREUOBJECT_API ObjectHandleReadFunction* ObjectHandle_Private::ObjectHandleReadCallback = nullptr;
-COREUOBJECT_API ObjectHandleClassResolvedFunction* ObjectHandle_Private::ObjectHandleClassResolvedCallback = nullptr;
-COREUOBJECT_API ObjectHandleReferenceResolvedFunction* ObjectHandle_Private::ObjectHandleReferenceResolvedCallback = nullptr;
+ENGINEUTILS_API/*COREUOBJECT_API*/ ObjectHandleReadFunction* ObjectHandle_Private::ObjectHandleReadCallback = nullptr;
+ENGINEUTILS_API/*COREUOBJECT_API*/ ObjectHandleClassResolvedFunction* ObjectHandle_Private::ObjectHandleClassResolvedCallback = nullptr;
+ENGINEUTILS_API/*COREUOBJECT_API*/ ObjectHandleReferenceResolvedFunction* ObjectHandle_Private::ObjectHandleReferenceResolvedCallback = nullptr;
 
 ObjectHandleReadFunction* SetObjectHandleReadCallback(ObjectHandleReadFunction* Function)
 {

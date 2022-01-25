@@ -4,14 +4,14 @@
 
 class FWidget;
 
-/** Coordinate system identifiers. */
-enum ECoordSystem
-{
-	COORD_None = -1,
-	COORD_World,
-	COORD_Local,
-	COORD_Max,
-};
+// /** Coordinate system identifiers. */
+// enum ECoordSystem
+// {
+// 	COORD_None = -1,
+// 	COORD_World,
+// 	COORD_Local,
+// 	COORD_Max,
+// };
 
 namespace UE {
 namespace Widget {

@@ -24,7 +24,7 @@ FCriticalSection GComplexPathLock;  // Could be changed to an RWLock later if ne
 //representing shared path elements like just registering the paths as FNames and not having
 //our own storage at all.
 TMultiMap<uint32, uint32> GComplexPathHashToId;
-template class CORE_API TArray<FMinimalName, TInlineAllocator<3>>;
+//template class CORE_API TArray<FMinimalName, TInlineAllocator<3>>;
 TArray<TArray<FMinimalName, TInlineAllocator<3>>> GComplexPaths;
 /*
 template <int a, int b>
@@ -94,7 +94,7 @@ void StoreObjectPathId(NameProducerType& NameProducer, uint64 SimplePathFlag, ui
 	uint32 NewId = GComplexPaths.Add(MinimalNames) + 1;
 	GComplexPathHashToId.Add(Key, NewId);
 	OutObjectPathId = static_cast<uint32>(NewId << 1);
-	GCoreComplexObjectPathDebug = GComplexPaths.GetData();
+	//GCoreComplexObjectPathDebug = GComplexPaths.GetData();
 }
 
 FObjectPathId::FObjectPathId(const UObject* Object)

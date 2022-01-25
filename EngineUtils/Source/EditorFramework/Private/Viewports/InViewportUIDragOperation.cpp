@@ -3,7 +3,7 @@
 #include "Viewports/InViewportUIDragOperation.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/SWindow.h"
-#include "Styling/AppStyle.h"
+//#include "Styling/AppStyle.h"
 #include "Framework/Application/SlateApplication.h"
 
 const FVector2D FInViewportUIDragOperation::GetDecoratorOffsetFromCursor()
@@ -54,13 +54,13 @@ FInViewportUIDragOperation::FInViewportUIDragOperation(const TSharedRef<class SW
 	// Create the decorator window that we will use during this drag and drop to make the user feel like
 	// they are actually dragging a piece of UI.
 
-	// Start the window off hidden.
-	const bool bShowImmediately = true;
-	CursorDecoratorWindow = FSlateApplication::Get().AddWindow(SWindow::MakeStyledCursorDecorator(FAppStyle::Get().GetWidgetStyle<FWindowStyle>("InViewportDecoratorWindow")), bShowImmediately);
-	CursorDecoratorWindow->SetOpacity(0.45f);
-	CursorDecoratorWindow->SetContent
-	(
-		InUIToBeDragged
-	);
+	// // Start the window off hidden.
+	// const bool bShowImmediately = true;
+	// CursorDecoratorWindow = FSlateApplication::Get().AddWindow(SWindow::MakeStyledCursorDecorator(FAppStyle::Get().GetWidgetStyle<FWindowStyle>("InViewportDecoratorWindow")), bShowImmediately);
+	// CursorDecoratorWindow->SetOpacity(0.45f);
+	// CursorDecoratorWindow->SetContent
+	// (
+	// 	InUIToBeDragged
+	// );
 
 }

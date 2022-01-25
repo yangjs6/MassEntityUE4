@@ -36,10 +36,10 @@ struct FObjectRef
 
 inline bool IsObjectRefNull(const FObjectRef& ObjectRef) { return ObjectRef.PackageName.IsNone() && ObjectRef.ObjectPath.IsNone(); }
 
-COREUOBJECT_API FObjectRef MakeObjectRef(const UObject* Object);
-COREUOBJECT_API FObjectRef MakeObjectRef(struct FPackedObjectRef ObjectRef);
-COREUOBJECT_API UObject* ResolveObjectRef(const FObjectRef& ObjectRef, uint32 LoadFlags = LOAD_None);
-COREUOBJECT_API UClass* ResolveObjectRefClass(const FObjectRef& ObjectRef, uint32 LoadFlags = LOAD_None);
+ENGINEUTILS_API/*COREUOBJECT_API*/ FObjectRef MakeObjectRef(const UObject* Object);
+ENGINEUTILS_API/*COREUOBJECT_API*/ FObjectRef MakeObjectRef(struct FPackedObjectRef ObjectRef);
+ENGINEUTILS_API/*COREUOBJECT_API*/ UObject* ResolveObjectRef(const FObjectRef& ObjectRef, uint32 LoadFlags = LOAD_None);
+ENGINEUTILS_API/*COREUOBJECT_API*/ UClass* ResolveObjectRefClass(const FObjectRef& ObjectRef, uint32 LoadFlags = LOAD_None);
 
 
 /**
@@ -55,10 +55,10 @@ struct FPackedObjectRef
 
 inline bool IsPackedObjectRefNull(FPackedObjectRef ObjectRef) { return !ObjectRef.EncodedRef; }
 
-COREUOBJECT_API FPackedObjectRef MakePackedObjectRef(const UObject* Object);
-COREUOBJECT_API FPackedObjectRef MakePackedObjectRef(const FObjectRef& ObjectRef);
-COREUOBJECT_API UObject* ResolvePackedObjectRef(FPackedObjectRef ObjectRef, uint32 LoadFlags = LOAD_None);
-COREUOBJECT_API UClass* ResolvePackedObjectRefClass(FPackedObjectRef ObjectRef, uint32 LoadFlags = LOAD_None);
+ENGINEUTILS_API/*COREUOBJECT_API*/ FPackedObjectRef MakePackedObjectRef(const UObject* Object);
+ENGINEUTILS_API/*COREUOBJECT_API*/ FPackedObjectRef MakePackedObjectRef(const FObjectRef& ObjectRef);
+ENGINEUTILS_API/*COREUOBJECT_API*/ UObject* ResolvePackedObjectRef(FPackedObjectRef ObjectRef, uint32 LoadFlags = LOAD_None);
+ENGINEUTILS_API/*COREUOBJECT_API*/ UClass* ResolvePackedObjectRefClass(FPackedObjectRef ObjectRef, uint32 LoadFlags = LOAD_None);
 
 inline bool operator==(FPackedObjectRef LHS, FPackedObjectRef RHS) { return LHS.EncodedRef == RHS.EncodedRef; }
 inline bool operator!=(FPackedObjectRef LHS, FPackedObjectRef RHS) { return LHS.EncodedRef != RHS.EncodedRef; }
@@ -156,7 +156,7 @@ using ObjectHandleReferenceResolvedFunction = void(const FObjectRef& SourceRef, 
  * @param Function		The new handle read callback to install.
  * @return				The previous handle read callback (or nullptr).  The caller is expected to store this and call in their own handle read callback.
  */
-COREUOBJECT_API /*UE_NODISCARD*/ ObjectHandleReadFunction* SetObjectHandleReadCallback(ObjectHandleReadFunction* Function);
+ENGINEUTILS_API/*COREUOBJECT_API*/ /*UE_NODISCARD*/ ObjectHandleReadFunction* SetObjectHandleReadCallback(ObjectHandleReadFunction* Function);
 
 /**
  * Installs a new callback for notifications that a class has been resolved from an object handle or object reference.
@@ -164,7 +164,7 @@ COREUOBJECT_API /*UE_NODISCARD*/ ObjectHandleReadFunction* SetObjectHandleReadCa
  * @param Function		The new class resolved callback to install.
  * @return				The previous object resolved callback (or nullptr).  The caller is expected to store this and call in their own class resolved callback.
  */
-COREUOBJECT_API /*UE_NODISCARD*/ ObjectHandleClassResolvedFunction* SetObjectHandleClassResolvedCallback(ObjectHandleClassResolvedFunction* Function);
+ENGINEUTILS_API/*COREUOBJECT_API*/ /*UE_NODISCARD*/ ObjectHandleClassResolvedFunction* SetObjectHandleClassResolvedCallback(ObjectHandleClassResolvedFunction* Function);
 
 /**
  * Installs a new callback for notifications that an object has been resolved from an object handle or object reference.
@@ -172,7 +172,7 @@ COREUOBJECT_API /*UE_NODISCARD*/ ObjectHandleClassResolvedFunction* SetObjectHan
  * @param Function		The new object resolved callback to install.
  * @return				The previous object resolved callback (or nullptr).  The caller is expected to store this and call in their own object resolved callback.
  */
-COREUOBJECT_API /*UE_NODISCARD*/ ObjectHandleReferenceResolvedFunction* SetObjectHandleReferenceResolvedCallback(ObjectHandleReferenceResolvedFunction* Function);
+ENGINEUTILS_API/*COREUOBJECT_API*/ /*UE_NODISCARD*/ ObjectHandleReferenceResolvedFunction* SetObjectHandleReferenceResolvedCallback(ObjectHandleReferenceResolvedFunction* Function);
 #endif
 
 
@@ -205,9 +205,9 @@ namespace ObjectHandle_Private
 	constexpr uint32 PackageIdMask = 0x7FFF'FFFF;
 
 #if UE_WITH_OBJECT_HANDLE_TRACKING
-	extern COREUOBJECT_API ObjectHandleReadFunction* ObjectHandleReadCallback;
-	extern COREUOBJECT_API ObjectHandleClassResolvedFunction* ObjectHandleClassResolvedCallback;
-	extern COREUOBJECT_API ObjectHandleReferenceResolvedFunction* ObjectHandleReferenceResolvedCallback;
+	extern ENGINEUTILS_API/*COREUOBJECT_API*/ ObjectHandleReadFunction* ObjectHandleReadCallback;
+	extern ENGINEUTILS_API/*COREUOBJECT_API*/ ObjectHandleClassResolvedFunction* ObjectHandleClassResolvedCallback;
+	extern ENGINEUTILS_API/*COREUOBJECT_API*/ ObjectHandleReferenceResolvedFunction* ObjectHandleReferenceResolvedCallback;
 
 	inline void OnHandleRead(UObject* Object)
 	{

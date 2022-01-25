@@ -30,15 +30,15 @@ class FObjectPathId
 public:
 	FObjectPathId() = default;
 	FObjectPathId(const FObjectPathId& Other) = default;
-	COREUOBJECT_API explicit FObjectPathId(const UObject* Object);
-	COREUOBJECT_API FObjectPathId(const FObjectImport& Import, const FLinkerTables& LinkerTables);
+	ENGINEUTILS_API/*COREUOBJECT_API*/ explicit FObjectPathId(const UObject* Object);
+	ENGINEUTILS_API/*COREUOBJECT_API*/ FObjectPathId(const FObjectImport& Import, const FLinkerTables& LinkerTables);
 
 	enum EInvalid {Invalid = 0};
-	explicit COREUOBJECT_API FObjectPathId(EInvalid): PathId(static_cast<uint64>(EPathId::FlagSimple))
+	explicit ENGINEUTILS_API/*COREUOBJECT_API*/ FObjectPathId(EInvalid): PathId(static_cast<uint64>(EPathId::FlagSimple))
 	{
 	}
 
-	COREUOBJECT_API static FName MakeImportPathIdAndPackageName(const FObjectImport& Import, const FLinkerTables& LinkerTables, FObjectPathId& OutPathId);
+	ENGINEUTILS_API/*COREUOBJECT_API*/ static FName MakeImportPathIdAndPackageName(const FObjectImport& Import, const FLinkerTables& LinkerTables, FObjectPathId& OutPathId);
 
 #if !(UE_BUILD_SHIPPING || UE_BUILD_TEST)
 	// Should only be used by unit tests
@@ -56,7 +56,7 @@ public:
 	//		 2) Requiring string allocation
 	//		 3) Constraining how we might change the internal storage of object paths in the future
 	using ResolvedNameContainerType = TArray<FName, TInlineAllocator<3>>;
-	COREUOBJECT_API void Resolve(ResolvedNameContainerType& OutContainer) const;
+	ENGINEUTILS_API/*COREUOBJECT_API*/ void Resolve(ResolvedNameContainerType& OutContainer) const;
 
 private:
 	enum class EPathId : uint64

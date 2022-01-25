@@ -6,7 +6,7 @@
 #include "Elements/Framework/TypedElementHandle.h"
 #include "UObject/Interface.h"
 
-#include "Instances/InstancedPlacementClientInfo.h"
+//#include "Instances/InstancedPlacementClientInfo.h"
 
 #include "AssetFactoryInterface.generated.h"
 

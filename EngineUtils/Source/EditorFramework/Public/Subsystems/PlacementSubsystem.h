@@ -6,6 +6,7 @@
 #include "Elements/Framework/TypedElementHandle.h"
 #include "EditorSubsystem.h"
 #include "Templates/SubclassOf.h"
+#include "UObject/ObjectPtr.h"
 
 #include "PlacementSubsystem.generated.h"
 
@@ -46,8 +47,8 @@ struct EDITORFRAMEWORK_API FAssetPlacementInfo
 	UPROPERTY()
 	FGuid ItemGuid;
 
-	UPROPERTY()
-	TObjectPtr<UInstancedPlacemenClientSettings> SettingsObject = nullptr;
+	// UPROPERTY()
+	// TObjectPtr<UInstancedPlacemenClientSettings> SettingsObject = nullptr;
 };
 
 USTRUCT()

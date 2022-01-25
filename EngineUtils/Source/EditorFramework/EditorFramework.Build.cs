@@ -36,6 +36,7 @@ public class EditorFramework : ModuleRules
 				"InteractiveToolsFramework",
 				"TypedElementFramework",
 				"TypedElementRuntime",
+				"EngineUtils"
 			}
 		);
 

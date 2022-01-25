@@ -401,7 +401,7 @@ public:
 	FORCEINLINE void Empty(const int32 InSlack = 0)
 	{
 		// Avoid creating unnecessary notifications
-		const bool bWasEmpty = ElementHandles.IsEmpty();
+		const bool bWasEmpty = ElementHandles.Num() <= 0;//.IsEmpty();
 		if (!bWasEmpty)
 		{
 			NoteListMayChange();
@@ -424,7 +424,8 @@ public:
 	FORCEINLINE void Reset()
 	{
 		// Avoid creating unnecessary notifications
-		if (!ElementHandles.IsEmpty())
+		//if (!ElementHandles.IsEmpty())
+		if (ElementHandles.Num() > 0)
 		{
 			NoteListMayChange();
 			ElementCombinedIds.Reset();

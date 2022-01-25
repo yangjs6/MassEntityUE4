@@ -12,6 +12,7 @@ public class TypedElementRuntime : ModuleRules
 			{
 				"Core",
 				"CoreUObject",
+				"Engine",
 				"TypedElementFramework",
 			}
 		);

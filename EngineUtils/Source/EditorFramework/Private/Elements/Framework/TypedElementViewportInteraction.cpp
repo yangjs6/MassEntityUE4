@@ -12,7 +12,7 @@ bool FTypedElementViewportInteractionCustomization::GetGizmoPivotLocation(const 
 {
 	if (const IToolkitHost* ToolkitHostPtr = GetToolkitHost())
 	{
-		OutPivotLocation = ToolkitHostPtr->GetEditorModeManager().PivotLocation;
+		//OutPivotLocation = ToolkitHostPtr->GetEditorModeManager().PivotLocation;
 		return true;
 	}
 
