@@ -27,7 +27,11 @@ static TArray<FName> CommandFNames;
 static const int32 MaxNameLength = 64;
 typedef ANSICHAR ANSIName[MaxNameLength];
 static ANSIName DefaultANSIName = "Command";
-static TArray<ANSIName> CommandANSINames;
+struct FANSIName
+{
+	ANSIName Name;
+};
+static TArray<FANSIName> CommandANSINames;
 
 /**
  * Provides valid names for CSV profiling.
@@ -52,7 +56,7 @@ void GetCommandStatNames(FStructView Entry, FString& OutName, ANSIName*& OutANSI
 	if (Index == INDEX_NONE)
 	{
 		CommandFNames.Emplace(CommandFName);
-		OutANSIName = &CommandANSINames.AddZeroed_GetRef();
+		OutANSIName = &CommandANSINames.AddZeroed_GetRef().Name;
 		// Use prefix for easier parsing in reports
 		//const FString CounterName = FString::Printf(TEXT("Num%s"), *OutName);
 		//FMemory::Memcpy(OutANSIName, StringCast<ANSICHAR>(*CounterName).Get(), FMath::Min(CounterName.Len(), MaxNameLength - 1) * sizeof(ANSICHAR));
@@ -60,7 +64,7 @@ void GetCommandStatNames(FStructView Entry, FString& OutName, ANSIName*& OutANSI
 	}
 	else
 	{
-		OutANSIName = &CommandANSINames[Index];
+		OutANSIName = &CommandANSINames[Index].Name;
 	}
 }
 

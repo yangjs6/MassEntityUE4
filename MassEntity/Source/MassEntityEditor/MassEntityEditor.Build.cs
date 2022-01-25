@@ -6,6 +6,7 @@ namespace UnrealBuildTool.Rules
 	{
 		public MassEntityEditor(ReadOnlyTargetRules Target) : base(Target)
 		{
+			CppStandard = CppStandardVersion.Cpp17;
 			PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 			//BinariesSubFolder = "NotForLicensees";
 

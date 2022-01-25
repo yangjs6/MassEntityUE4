@@ -290,7 +290,8 @@ public:
 		return MakeEntityHandle(Entity.Index); 
 	}
 
-	bool IsInitialized() const { return TotalBytesPerEntity > 0 && FragmentConfigs.IsEmpty() == false; }
+	//bool IsInitialized() const { return TotalBytesPerEntity > 0 && FragmentConfigs.IsEmpty() == false; }
+	bool IsInitialized() const { return TotalBytesPerEntity > 0 && FragmentConfigs.Num() > 0; }
 
 protected:
 	FORCEINLINE void* GetFragmentData(const int32 FragmentIndex, uint8* ChunkRawMemory, const int32 IndexWithinChunk) const

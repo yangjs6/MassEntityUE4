@@ -110,7 +110,8 @@ struct MASSENTITY_API FMassRuntimePipeline
 	void DebugOutputDescription(FOutputDevice& Ar) const;
 
 	bool HasProcessorOfExactClass(TSubclassOf<UMassProcessor> InClass) const;
-	bool IsEmpty() const { return Processors.IsEmpty();}
+	//bool IsEmpty() const { return Processors.IsEmpty();}
+	bool IsEmpty() const { return Processors.Num() <= 0; }
 
 	MASSENTITY_API friend uint32 GetTypeHash(const FMassRuntimePipeline& Instance);
 };
@@ -126,3 +127,45 @@ enum class EMassProcessingPhase : uint8
 	FrameEnd,
 	MAX,
 };
+
+FORCEINLINE FString ToString(const ENetMode NetMode)
+{
+	switch (NetMode)
+	{
+	case NM_Standalone:
+		return FString("Standalone");
+	case NM_DedicatedServer:
+		return FString("DedicatedServer");
+	case NM_ListenServer:
+		return FString("ListenServer");
+	case NM_Client:
+		return FString("Client");
+	default:
+		return FString("UnknownNetMode");
+	}
+}
+
+FORCEINLINE FString LexToString(const TEnumAsByte<EWorldType::Type> WorldType)
+{
+	switch (WorldType)
+	{
+	case EWorldType::None:
+		return "None";
+	case EWorldType::Game:
+		return "Game";
+	case EWorldType::Editor:
+		return "Editor";
+	case EWorldType::PIE:
+		return "PIE";
+	case EWorldType::EditorPreview:
+		return "EditorPreview";
+	case EWorldType::GamePreview:
+		return "GamePreview";
+	case EWorldType::GameRPC:
+		return "GameRPC";
+	case EWorldType::Inactive:
+		return "Inactive";
+	default:
+		return "None";
+	}
+}

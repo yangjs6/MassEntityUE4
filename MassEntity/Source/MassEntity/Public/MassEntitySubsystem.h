@@ -75,7 +75,7 @@ public:
 
 	//~USubsystem interface
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-	virtual void PostInitialize() override;
+	virtual void PostInitialize();// override;
 	virtual void Deinitialize() override;
 	//~End of USubsystem interface
 	

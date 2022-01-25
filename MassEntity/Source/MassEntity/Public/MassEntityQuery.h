@@ -370,7 +370,8 @@ public:
 	 */
 	void SetChunkFilter(const FMassChunkConditionFunction& InFunction) { ChunkCondition = InFunction; }
 
-	void ClearChunkFilter() { ChunkCondition.Reset(); }
+	//void ClearChunkFilter() { ChunkCondition.Reset(); }
+	void ClearChunkFilter() { ChunkCondition = nullptr; }
 
 	bool HasChunkFilter() const { return bool(ChunkCondition); }
 
@@ -380,7 +381,8 @@ public:
 	 */
 	void SetArchetypeFilter(const FMassArchetypeConditionFunction& InFunction) { ArchetypeCondition = InFunction; }
 
-	void ClearArchetypeFilter() { ArchetypeCondition.Reset(); }
+	//void ClearArchetypeFilter() { ArchetypeCondition.Reset(); }
+	void ClearArchetypeFilter() { ArchetypeCondition = nullptr; }
 
 	bool HasArchetypeFilter() const { return bool(ArchetypeCondition); }
 

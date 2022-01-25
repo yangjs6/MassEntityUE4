@@ -4,13 +4,26 @@
 #include "MassEntitySubsystem.h"
 #include "MassExecutor.h"
 #include "Engine/World.h"
+namespace FTestHelpers
+{
+	UWorld* GetWorld()
+	{
+#if WITH_EDITOR
+		if (GIsEditor)
+		{
+			return GWorld;
+		}
+#endif // WITH_EDITOR
+		return GEngine->GetWorldContexts()[0].World();
+	}
+}
 
 //----------------------------------------------------------------------//
 // Test bases 
 //----------------------------------------------------------------------//
 bool FExecutionTestBase::SetUp()
 {
-	World = FAITestHelpers::GetWorld();
+	World = FTestHelpers::GetWorld();
 	EntitySubsystem = NewObject<UMassEntitySubsystem>(World);
 	check(EntitySubsystem);
 	struct FSubsystemCollection_TestInit : FSubsystemCollectionBase

@@ -91,7 +91,7 @@ FAutoConsoleCommandWithWorldArgsAndOutputDevice LogArchetypesCmd(
 
 			Ar.Logf(ELogVerbosity::Log, TEXT("Dumping description of archetypes for world: %s (%s - %s)"),
 				*GetPathNameSafe(World),
-				LexToString(World->WorldType),
+				*LexToString(World->WorldType),
 				*ToString(World->GetNetMode()));
 
 			if (UMassEntitySubsystem* EntitySystem = World->GetSubsystem<UMassEntitySubsystem>())
@@ -108,7 +108,7 @@ FAutoConsoleCommandWithWorldArgsAndOutputDevice LogArchetypesCmd(
 			{
 				Ar.Logf(ELogVerbosity::Error, TEXT("Failed to find MassEntitySubsystem for world: %s (%s - %s)"),
 					*GetPathNameSafe(World),
-					LexToString(World->WorldType),
+					*LexToString(World->WorldType),
 					*ToString(World->GetNetMode()));
 			}
 		}

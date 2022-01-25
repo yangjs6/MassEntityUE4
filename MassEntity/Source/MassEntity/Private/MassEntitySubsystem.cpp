@@ -71,6 +71,8 @@ void UMassEntitySubsystem::Initialize(FSubsystemCollectionBase& Collection)
 			ChunkFragments.Add(*CastChecked<UScriptStruct>(*StructIt));
 		}
 	}
+
+	PostInitialize();
 }
 
 void UMassEntitySubsystem::PostInitialize()

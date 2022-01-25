@@ -839,7 +839,7 @@ void FProcessorDependencySolver::ResolveDependencies(TArray<FProcessorDependency
     const bool bAnyUnresolvedDependencies = GroupRootNode.HasDependencies();
 	if (bAnyUnresolvedDependencies)
 	{
-		const UWorld* World = Processors.IsEmpty() ? nullptr : Processors[0]->GetWorld();
+		const UWorld* World = Processors.Num() <= 0 ? nullptr : Processors[0]->GetWorld();
 	    for (const FName& DependencyName : GroupRootNode.ExecuteBefore)
 	    {
 		    UE_LOG(LogMass, Warning, TEXT("(%s) %s found an unresolved execute before dependency (%s)"),
