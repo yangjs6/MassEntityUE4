@@ -37,5 +37,11 @@
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}
+	],
+	"Plugins": [
+		{
+			"Name": "EngineUtils",
+			"Enabled": true
+		}
 	]
 }

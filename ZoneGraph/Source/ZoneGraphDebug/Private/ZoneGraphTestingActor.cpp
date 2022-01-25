@@ -174,7 +174,7 @@ void UZoneGraphTestingComponent::UpdateTests()
 				
 				// @todo: see if we can return directly a path of lane handles
 				TArray<FZoneGraphAStarWrapper::FNodeRef> ResultPath;
-				EGraphAStarResult Result = Pathfinder.FindPath(StartNode, EndNode, PathFilter, ResultPath);
+				EGraphAStarResult Result = SearchFail;//= Pathfinder.FindPath(StartNode, EndNode, PathFilter, ResultPath);
 				if (Result == SearchSuccess)
 				{
 					//Store the resulting lanes

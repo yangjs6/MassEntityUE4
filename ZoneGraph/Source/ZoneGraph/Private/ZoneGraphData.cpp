@@ -23,7 +23,7 @@ AZoneGraphData::AZoneGraphData(const FObjectInitializer& ObjectInitializer)
 #endif
 
 #if WITH_EDITORONLY_DATA
-	bIsSpatiallyLoaded = false;
+	//bIsSpatiallyLoaded = false;
 #endif
 }
 

@@ -26,7 +26,7 @@ public:
 #if WITH_EDITOR
 	virtual void PostEditUndo() override;
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
-	virtual bool CanChangeIsSpatiallyLoadedFlag() const override { return false; }
+	virtual bool CanChangeIsSpatiallyLoadedFlag() const /*override*/ { return false; }
 #endif // WITH_EDITOR
 	//~ End UObject/AActor Interface
 

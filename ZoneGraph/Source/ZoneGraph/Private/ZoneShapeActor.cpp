@@ -15,6 +15,6 @@ AZoneShape::AZoneShape(const FObjectInitializer& ObjectInitializer)
 	SetCanBeDamaged(false);
 
 #if WITH_EDITORONLY_DATA
-	bIsSpatiallyLoaded = false;
+	//bIsSpatiallyLoaded = false;
 #endif
 }

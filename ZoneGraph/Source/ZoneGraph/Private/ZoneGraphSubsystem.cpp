@@ -28,11 +28,13 @@ void UZoneGraphSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 #endif
 
 	bInitialized = true;
+
+	PostInitialize();
 }
 
 void UZoneGraphSubsystem::PostInitialize()
 {
-	Super::PostInitialize();
+	//Super::PostInitialize();
 
 	// Register Zone Graph data that we missed before the subsystem got initialized.
 	RegisterZoneGraphDataInstances();
@@ -176,7 +178,7 @@ void UZoneGraphSubsystem::RegisterZoneGraphDataInstances()
 	for (TActorIterator<AZoneGraphData> It(World); It; ++It)
 	{
 		AZoneGraphData* ZoneGraphData = (*It);
-		if (ZoneGraphData != nullptr && IsValidChecked(ZoneGraphData) == true && ZoneGraphData->IsRegistered() == false)
+		if (ZoneGraphData != nullptr && /*IsValidChecked(ZoneGraphData) == true &&*/ ZoneGraphData->IsRegistered() == false)
 		{
 			RegisterZoneGraphData(*ZoneGraphData);
 		}

@@ -6,6 +6,7 @@ namespace UnrealBuildTool.Rules
 	{
 		public ZoneGraph(ReadOnlyTargetRules Target) : base(Target)
 		{
+			CppStandard = CppStandardVersion.Cpp17;
 			PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
 			PublicIncludePaths.AddRange(
@@ -31,6 +32,12 @@ namespace UnrealBuildTool.Rules
 				}
 			);
 
+			PrivateDependencyModuleNames.AddRange(
+				new string[] {
+					"EngineUtils"
+				}
+			);
+			
 			if (Target.bBuildEditor == true)
 			{
 				PrivateDependencyModuleNames.Add("EditorFramework");

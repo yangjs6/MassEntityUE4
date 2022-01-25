@@ -50,7 +50,8 @@ void DrawZoneBoundary(const FZoneGraphStorage& ZoneStorage, int32 ZoneIndex, FPr
 	for (int32 i = Zone.BoundaryPointsBegin; i < Zone.BoundaryPointsEnd; i++)
 	{
 		const FVector Point = bTransform ? FVector(LocalToWorld.TransformPosition(ZoneStorage.BoundaryPoints[i])) : ZoneStorage.BoundaryPoints[i];
-		PDI->DrawTranslucentLine(PrevPoint, Point, Color, SDPG_World, LineThickness, 0/*DepthBias*/, true);
+		PDI->DrawLine(PrevPoint, Point, Color, SDPG_World, LineThickness, 0/*DepthBias*/, true);
+		//PDI->DrawTranslucentLine(PrevPoint, Point, Color, SDPG_World, LineThickness, 0/*DepthBias*/, true);
 		PrevPoint = Point;
 	}
 }
@@ -325,7 +326,8 @@ void DrawZoneLanes(const FZoneGraphStorage& ZoneStorage, int32 ZoneIndex, FPrimi
 			for (int32 i = Lane.PointsBegin + 1; i < Lane.PointsEnd; i++)
 			{
 				const FVector Point = bTransform ? FVector(LocalToWorld.TransformPosition(ZoneStorage.LanePoints[i])) : ZoneStorage.LanePoints[i];
-				PDI->DrawTranslucentLine(PrevPoint, Point, Color, SDPG_World, LineThickness, DepthBias, true);
+				PDI->DrawLine(PrevPoint, Point, Color, SDPG_World, LineThickness, DepthBias, true);
+				//PDI->DrawTranslucentLine(PrevPoint, Point, Color, SDPG_World, LineThickness, DepthBias, true);
 				PrevPoint = Point;
 			}
 		}

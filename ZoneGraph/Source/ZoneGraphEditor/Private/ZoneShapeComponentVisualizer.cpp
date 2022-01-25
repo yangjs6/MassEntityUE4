@@ -680,7 +680,7 @@ bool FZoneShapeComponentVisualizer::GetCustomInputCoordinateSystem(const FEditor
 	}
 	else
 	{
-		if (ViewportClient->GetWidgetCoordSystemSpace() == COORD_Local || ViewportClient->GetWidgetMode() == UE::Widget::WM_Rotate)
+		if (ViewportClient->GetWidgetCoordSystemSpace() == COORD_Local || ViewportClient->GetWidgetMode() == FWidget::WM_Rotate)
 		{
 			FQuat Rotation = FQuat::Identity;
 			if (GetLastSelectedPointRotation(Rotation))
@@ -740,7 +740,7 @@ bool FZoneShapeComponentVisualizer::HandleInputDelta(FEditorViewportClient* View
 		{
 			if (ViewportClient->IsAltPressed())
 			{
-				if (ViewportClient->GetWidgetMode() == UE::Widget::WM_Translate && ViewportClient->GetCurrentWidgetAxis() != EAxisList::None)
+				if (ViewportClient->GetWidgetMode() == FWidget::WM_Translate && ViewportClient->GetCurrentWidgetAxis() != EAxisList::None)
 				{
 					if (bAllowDuplication)
 					{
@@ -922,7 +922,7 @@ bool FZoneShapeComponentVisualizer::HandleInputKey(FEditorViewportClient* Viewpo
 		CachedRotation = FQuat::Identity;
 
 		// Cache the widget rotation when mouse is pressed down to avoid feedback effects during gizmo interaction.
-		if (ViewportClient->GetWidgetCoordSystemSpace() == COORD_Local || ViewportClient->GetWidgetMode() == UE::Widget::WM_Rotate)
+		if (ViewportClient->GetWidgetCoordSystemSpace() == COORD_Local || ViewportClient->GetWidgetMode() == FWidget::WM_Rotate)
 		{
 			bHasCachedRotation = GetLastSelectedPointRotation(CachedRotation);
 		}

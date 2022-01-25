@@ -56,7 +56,7 @@ void FZoneGraphBuilder::RegisterZoneShapeComponent(UZoneShapeComponent& ShapeCom
 #if WITH_EDITOR
 	// TODO: we could potentially separate out automatic building logic, and use object iterator to get all relevant data instead.
 	// Add to list
-	int32 Index = ShapeComponentsFreeList.IsEmpty() ? ShapeComponents.AddDefaulted() : ShapeComponentsFreeList.Pop();
+	int32 Index = ShapeComponentsFreeList.Num() == 0 /*.IsEmpty()*/ ? ShapeComponents.AddDefaulted() : ShapeComponentsFreeList.Pop();
 	FZoneGraphBuilderRegisteredComponent& Registered = ShapeComponents[Index];
 	Registered.Component = &ShapeComp;
 	// Add to grid

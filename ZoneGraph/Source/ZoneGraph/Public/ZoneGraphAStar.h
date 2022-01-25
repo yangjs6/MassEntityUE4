@@ -158,7 +158,7 @@ struct ZONEGRAPH_API FZoneGraphPathFilter
 			}
 			else
 			{
-				UE_LOG(LogAStar, Warning, TEXT("Not handled"));
+				//UE_LOG(LogAStar, Warning, TEXT("Not handled"));
 				return MAX_flt;
 			}
 		}
