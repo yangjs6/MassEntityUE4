@@ -223,6 +223,6 @@ void FInstancedStruct::AddStructReferencedObjects(class FReferenceCollector& Col
 {
 	if (const UScriptStruct* Struct = GetScriptStruct())
 	{
-		Collector.AddReferencedObjects(Struct, GetMutableMemory());
+		//Collector.AddReferencedObjects(Struct, GetMutableMemory());
 	}
 }

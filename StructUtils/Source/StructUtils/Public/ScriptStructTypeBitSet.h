@@ -6,6 +6,7 @@
 #include "Containers/BitArray.h"
 #include "InstancedStruct.h"
 #include "StructUtilsTypes.h"
+#include "WordIterator.h"
 
 /**
  * The TScriptStructTypeBitSet holds information on "existence" of subtypes of a given UStruct. The information on 

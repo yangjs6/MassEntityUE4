@@ -248,7 +248,7 @@ void FInstancedStructDetails::CustomizeHeader(TSharedRef<class IPropertyHandle> 
 				]
 			]
 		]
-		.OverrideResetToDefault(ResetOverride);
+		;// .OverrideResetToDefault(ResetOverride);
 }
 
 

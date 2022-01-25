@@ -16,7 +16,7 @@ void FConstSharedStruct::AddStructReferencedObjects(class FReferenceCollector& C
 {
 	if (const UScriptStruct* Struct = GetScriptStruct())
 	{
-		Collector.AddReferencedObjects(Struct, const_cast<uint8*>(GetMemory()));
+		//Collector.AddReferencedObjects(Struct, const_cast<uint8*>(GetMemory()));
 	}
 }
 
