@@ -1,0 +1,39 @@
+{
+	"FileVersion": 1,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "Engine Utils",
+	"Description": "Experimental Engine Utilities",
+	"Category": "Gameplay",
+	"CreatedBy": "Epic Games, Inc.",
+	"CreatedByURL": "http://epicgames.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": false,
+	"CanContainContent": false,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": true,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "EngineUtils",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
+		},
+		{
+			"Name" : "TypedElementRuntime",
+			"Type" : "Runtime",
+			"LoadingPhase": "PreDefault"
+		},
+		{
+			"Name" : "TypedElementFramework",
+			"Type" : "Runtime",
+			"LoadingPhase": "PreDefault"
+		},
+		{
+			"Name" : "EditorFramework",
+			"Type" : "Editor"
+		}
+	]
+}
