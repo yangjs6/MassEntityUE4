@@ -455,7 +455,7 @@ void UZoneGraphDisturbanceAnnotation::UpdateAnnotationTags(FZoneGraphAnnotationT
 	// Remove flags from previous update
 	for (FZoneGraphDataEscapeGraph& EscapeGraph : EscapeGraphs)
 	{
-		if (!EscapeGraph.PreviousLanes.IsEmpty())
+		if (EscapeGraph.PreviousLanes.Num() > 0)
 		{
 			TArrayView<FZoneGraphTagMask> LaneTags = AnnotationTagContainer.GetMutableAnnotationTagsForData(EscapeGraph.DataHandle);
 			for (const int32 LaneIndex : EscapeGraph.PreviousLanes)
@@ -471,7 +471,7 @@ void UZoneGraphDisturbanceAnnotation::UpdateAnnotationTags(FZoneGraphAnnotationT
 	{
 		for (FZoneGraphDataEscapeGraph& EscapeGraph : EscapeGraphs)
 		{
-			if (EscapeGraph.bInUse && !EscapeGraph.LanesToEscape.IsEmpty())
+			if (EscapeGraph.bInUse && EscapeGraph.LanesToEscape.Num() > 0)
 			{
 				FZoneGraphTagMask TagsAdded;
 				

@@ -6,7 +6,8 @@
 #include "ZoneGraphTypes.h"
 #include "ZoneGraphAnnotationTypes.h"
 #include "Misc/MTAccessDetector.h"
-#include "Subsystems/WorldSubsystem.h"
+//#include "Subsystems/WorldSubsystem.h"
+#include "TickableWorldSubsystem.h"
 
 #include "ZoneGraphAnnotationSubsystem.generated.h"
 

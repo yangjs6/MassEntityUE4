@@ -11,7 +11,7 @@ FPrimitiveSceneProxy* UDebugDrawComponent::CreateSceneProxy()
 		GetDebugDrawDelegateHelper().InitDelegateHelper(Proxy);
 	}
 
-	GetDebugDrawDelegateHelper().ProcessDeferredRegister();
+	// GetDebugDrawDelegateHelper().ProcessDeferredRegister();
 #endif
 	return Proxy;
 }
@@ -20,12 +20,12 @@ FPrimitiveSceneProxy* UDebugDrawComponent::CreateSceneProxy()
   void UDebugDrawComponent::CreateRenderState_Concurrent(FRegisterComponentContext* Context)
 {
 	Super::CreateRenderState_Concurrent(Context);
-	GetDebugDrawDelegateHelper().RequestRegisterDebugDrawDelegate(Context);
+	// GetDebugDrawDelegateHelper().RequestRegisterDebugDrawDelegate(Context);
 }
 
 void UDebugDrawComponent::DestroyRenderState_Concurrent()
 {
-	GetDebugDrawDelegateHelper().UnregisterDebugDrawDelegate();
+	// GetDebugDrawDelegateHelper().UnregisterDebugDrawDelegate();
 	Super::DestroyRenderState_Concurrent();
 }
 #endif

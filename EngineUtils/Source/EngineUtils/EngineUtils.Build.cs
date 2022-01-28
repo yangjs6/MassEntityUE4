@@ -6,6 +6,12 @@ namespace UnrealBuildTool.Rules
 	{
 		public EngineUtils(ReadOnlyTargetRules Target) : base(Target)
 		{
+			PublicDefinitions.AddRange(
+				new string[] {
+					"UE_ENABLE_DEBUG_DRAWING"
+				}
+			);
+			
 			PublicIncludePaths.AddRange(
 				new string[] {
 				ModuleDirectory + "/Public",
