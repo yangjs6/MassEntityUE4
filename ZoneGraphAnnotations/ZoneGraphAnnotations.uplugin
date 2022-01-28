@@ -20,7 +20,7 @@
 			"Name": "ZoneGraphAnnotations",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
-		},
+		}
 	],
 	"Plugins": [
 		{
@@ -29,6 +29,10 @@
 		},
 		{
 			"Name": "StructUtils",
+			"Enabled": true
+		},
+		{
+			"Name": "EngineUtils",
 			"Enabled": true
 		}
 	]

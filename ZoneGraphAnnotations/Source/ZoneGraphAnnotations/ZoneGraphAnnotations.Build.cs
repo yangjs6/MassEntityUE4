@@ -6,6 +6,7 @@ namespace UnrealBuildTool.Rules
 	{
 		public ZoneGraphAnnotations(ReadOnlyTargetRules Target) : base(Target)
 		{
+			CppStandard = CppStandardVersion.Cpp17;
 			PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
 			PublicIncludePaths.AddRange(
@@ -27,6 +28,7 @@ namespace UnrealBuildTool.Rules
 					"Engine",
 					"RHI",
 					"StructUtils",
+					"EngineUtils",
 					"ZoneGraph",
 					"ZoneGraphDebug"
 				}
