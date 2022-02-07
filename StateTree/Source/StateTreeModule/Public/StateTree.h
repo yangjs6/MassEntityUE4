@@ -60,7 +60,7 @@ public:
 #if WITH_EDITORONLY_DATA
 	// Edit time data for the StateTree, instance of UStateTreeEditorData
 	UPROPERTY()
-	TObjectPtr<UObject> EditorData;
+	UObject* EditorData;
 #endif
 
 protected:
@@ -83,7 +83,7 @@ private:
 	// Properties
 
 	UPROPERTY(EditDefaultsOnly, Category = Common, Instanced)
-	TObjectPtr<UStateTreeSchema> Schema = nullptr;
+	UStateTreeSchema* Schema = nullptr;
 
 	/** Evaluators, Tasks, and Condition items */
 	UPROPERTY()
@@ -95,11 +95,11 @@ private:
 
 	/** Blueprint based Evaluators, Tasks, and Conditions runtime data. */
 	UPROPERTY()
-	TArray<TObjectPtr<UObject>> InstanceObjects;
+	TArray<UObject*> InstanceObjects;
 
 	/** Script Struct that can be used to instantiate the runtime storage */
 	UPROPERTY()
-	TObjectPtr<UScriptStruct> InstanceStorageStruct;
+	UScriptStruct* InstanceStorageStruct;
 
 	/** Offsets into the runtime type to quickly get a struct view to a specific Task or Evaluator */
 	TArray<FStateTreeInstanceStorageOffset> InstanceStorageOffsets;

@@ -6,6 +6,7 @@ namespace UnrealBuildTool.Rules
 	{
 		public StateTreeEditorModule(ReadOnlyTargetRules Target) : base(Target)
 		{
+			CppStandard = CppStandardVersion.Cpp17;
 			PublicIncludePaths.AddRange(
 			new string[] {
 			}

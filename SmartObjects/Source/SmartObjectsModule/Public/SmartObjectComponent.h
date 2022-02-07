@@ -28,7 +28,7 @@ protected:
 	virtual void OnUnregister() override;
 
 	UPROPERTY(EditAnywhere, Category = SmartObject, BlueprintReadWrite)
-	TObjectPtr<USmartObjectDefinition> DefinitionAsset;
+	USmartObjectDefinition* DefinitionAsset;
 
 	/** RegisteredID != FSmartObject::InvalidID when registered into a collection by SmartObjectSubsystem */
 	UPROPERTY(Transient, VisibleAnywhere, Category = SmartObject)

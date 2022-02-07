@@ -9,7 +9,7 @@
 
 #if WITH_EDITOR
 #include "Engine/LevelBounds.h"
-#include "WorldPartition/WorldPartition.h"
+// #include "WorldPartition/WorldPartition.h"
 #endif
 
 namespace UE::SmartObject
@@ -172,12 +172,12 @@ bool USmartObjectSubsystem::RegisterSmartObject(USmartObjectComponent& SmartObje
 				bAddToCollection = false;
 				UE_VLOG_UELOG(this, LogSmartObject, VeryVerbose, TEXT("%s not added to collection that is built on demand only."), *GetNameSafe(SmartObjectComponent.GetOwner()));
 			}
-			// For partition world we don't alter the collection unless we are explicitly building the collection
-			else if(World.IsPartitionedWorld() && !MainCollection->IsBuildingForWorldPartition())
-			{
-				bAddToCollection = false;
-				UE_VLOG_UELOG(this, LogSmartObject, VeryVerbose, TEXT("%s not added to collection that is owned by partitioned world."), *GetNameSafe(SmartObjectComponent.GetOwner()));
-			}
+			// // For partition world we don't alter the collection unless we are explicitly building the collection
+			// else if(World.IsPartitionedWorld() && !MainCollection->IsBuildingForWorldPartition())
+			// {
+			// 	bAddToCollection = false;
+			// 	UE_VLOG_UELOG(this, LogSmartObject, VeryVerbose, TEXT("%s not added to collection that is owned by partitioned world."), *GetNameSafe(SmartObjectComponent.GetOwner()));
+			// }
 		}
 #endif // WITH_EDITOR
 
@@ -707,7 +707,7 @@ ESmartObjectCollectionRegistrationResult USmartObjectSubsystem::RegisterCollecti
 		// For a collection that is automatically updated, it gets rebuilt on registration in the Edition world.
 		const UWorld& World = GetWorldRef();
 		if (!World.IsGameWorld() &&
-			!World.IsPartitionedWorld() &&
+			// !World.IsPartitionedWorld() &&
 			!MainCollection->IsBuildOnDemand())
 		{
 			RebuildCollection(InCollection);
@@ -719,7 +719,8 @@ ESmartObjectCollectionRegistrationResult USmartObjectSubsystem::RegisterCollecti
 	}
 	else
 	{
-		InCollection.MarkAsGarbage();
+		InCollection.OnUnregistered();
+		//InCollection.MarkAsGarbage();
 		Result = ESmartObjectCollectionRegistrationResult::Failed_NotFromPersistentLevel;
 	}
 
@@ -804,11 +805,12 @@ void USmartObjectSubsystem::ComputeBounds(const UWorld& World, ASmartObjectColle
 {
 	FBox Bounds(ForceInitToZero);
 
-	if (const UWorldPartition* WorldPartition = World.GetWorldPartition())
-	{
-		Bounds = WorldPartition->GetWorldBounds();
-	}
-	else if (const ULevel* PersistentLevel = World.PersistentLevel.Get())
+	// if (const UWorldPartition* WorldPartition = World.GetWorldPartition())
+	// {
+	// 	Bounds = WorldPartition->GetWorldBounds();
+	// }
+	// else
+		if (const ULevel* PersistentLevel = World.PersistentLevel/*.Get()*/)
 	{
 		if (PersistentLevel->LevelBoundsActor.IsValid())
 		{

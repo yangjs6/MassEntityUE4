@@ -8,6 +8,7 @@ namespace UnrealBuildTool.Rules
 	{
 		public StateTreeTestSuite(ReadOnlyTargetRules Target) : base(Target)
 		{
+			CppStandard = CppStandardVersion.Cpp17;
 			PublicIncludePaths.AddRange(
 				new string[] {
 				}

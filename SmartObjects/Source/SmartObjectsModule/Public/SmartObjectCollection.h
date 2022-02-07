@@ -110,7 +110,7 @@ protected:
 	TMap<FSmartObjectID, FSoftObjectPath> RegisteredIdToObjectMap;
 
 	UPROPERTY(VisibleAnywhere, Category = SmartObject)
-	TArray<TObjectPtr<const USmartObjectDefinition>> Definitions;
+	TArray<const USmartObjectDefinition*> Definitions;
 
 	bool bRegistered = false;
 
