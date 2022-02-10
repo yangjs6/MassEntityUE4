@@ -7,7 +7,7 @@
 #include "SmartObjectOctree.h"
 #include "SmartObjectTypes.h"
 #include "SmartObjectRuntime.h"
-#include "Subsystems/WorldSubsystem.h"
+#include "Subsystems/WorldSubsystemEx.h"
 #include "SmartObjectSubsystem.generated.h"
 
 class USmartObjectComponent;
@@ -136,7 +136,7 @@ enum class ESmartObjectCollectionRegistrationResult
  * Subsystem that holds all registered smart object instances and offers the API for spatial queries and reservations.
  */
 UCLASS(config = Game)
-class SMARTOBJECTSMODULE_API USmartObjectSubsystem : public UWorldSubsystem
+class SMARTOBJECTSMODULE_API USmartObjectSubsystem : public UWorldSubsystemEx
 {
 	GENERATED_BODY()
 public:
@@ -202,7 +202,7 @@ public:
 	 *	@return The base class pointer of the requested behavior definition class associated to the slot
 	 */
 	UFUNCTION(BlueprintCallable, Category = "SmartObject")
-	const USmartObjectBehaviorDefinition* Use(const FSmartObjectClaimHandle& ClaimHandle, const TSubclassOf<USmartObjectBehaviorDefinition>& DefinitionClass);
+	USmartObjectBehaviorDefinition* Use(const FSmartObjectClaimHandle& ClaimHandle, const TSubclassOf<USmartObjectBehaviorDefinition>& DefinitionClass);
 
 	/**
 	 *	Start using a claimed smart object slot.

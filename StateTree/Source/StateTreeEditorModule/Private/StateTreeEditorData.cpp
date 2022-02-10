@@ -135,7 +135,7 @@ void UStateTreeEditorData::VisitHierarchy(TFunctionRef<bool(const UStateTreeStat
 
 		Stack.Add(Routine);
 
-		while (!Stack.IsEmpty() && bContinue)
+		while (Stack.Num() > 0 && bContinue)
 		{
 			const UStateTreeState* State = Stack[0];
 			check(State);

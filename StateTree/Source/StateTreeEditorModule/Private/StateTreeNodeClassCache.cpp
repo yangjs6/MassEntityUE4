@@ -92,7 +92,7 @@ FStateTreeNodeClassCache::FStateTreeNodeClassCache()
 	AssetRegistryModule.Get().OnAssetRemoved().AddRaw(this, &FStateTreeNodeClassCache::OnAssetRemoved);
 
 	// Register to have Populate called when doing a Reload.
-	FCoreUObjectDelegates::ReloadCompleteDelegate.AddRaw(this, &FStateTreeNodeClassCache::OnReloadComplete);
+	//FCoreUObjectDelegates::ReloadCompleteDelegate.AddRaw(this, &FStateTreeNodeClassCache::OnReloadComplete);
 
 	// Register to have Populate called when a Blueprint is compiled.
 	check(GEditor);
@@ -111,7 +111,7 @@ FStateTreeNodeClassCache::~FStateTreeNodeClassCache()
 		AssetRegistryModule.Get().OnAssetRemoved().RemoveAll(this);
 
 		// Unregister to have Populate called when doing a Reload.
-		FCoreUObjectDelegates::ReloadCompleteDelegate.RemoveAll(this);
+		//FCoreUObjectDelegates::ReloadCompleteDelegate.RemoveAll(this);
 
 		// Unregister to have Populate called when a Blueprint is compiled.
 		if (GEditor != nullptr)
@@ -188,10 +188,10 @@ void FStateTreeNodeClassCache::InvalidateCache()
 	}
 }
 
-void FStateTreeNodeClassCache::OnReloadComplete(EReloadCompleteReason Reason)
-{
-	InvalidateCache();
-}
+// void FStateTreeNodeClassCache::OnReloadComplete(EReloadCompleteReason Reason)
+// {
+// 	InvalidateCache();
+// }
 
 void FStateTreeNodeClassCache::UpdateBlueprintClass(const FAssetData& AssetData)
 {

@@ -61,7 +61,7 @@ protected:
 	AActor* GetOwnerActor(const FStateTreeExecutionContext& Context) const;
 
 #if WITH_EDITOR
-	virtual void PostCDOCompiled() override;
+	virtual void PostCDOCompiled(); //override;
 #endif
 
 	/** Metadata for properties */

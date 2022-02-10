@@ -4,7 +4,8 @@
 
 #include "ZoneGraphTypes.h"
 #include "ZoneGraphData.h"
-#include "TickableWorldSubsystem.h"
+#include "Subsystems/WorldSubsystemEx.h"
+
 #if WITH_EDITOR
 #include "ZoneGraphBuilder.h"
 #endif
@@ -126,7 +127,7 @@ public:
 
 protected:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-	virtual void PostInitialize() /*override*/;
+	virtual void PostInitialize() override;
 	virtual void Deinitialize() override;
 	virtual void Tick(float DeltaTime) override;
 	virtual TStatId GetStatId() const override;

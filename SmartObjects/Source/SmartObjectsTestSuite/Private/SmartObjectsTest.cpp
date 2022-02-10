@@ -14,7 +14,20 @@ PRAGMA_DISABLE_OPTIMIZATION
 
 namespace FSmartObjectTest
 {
-
+namespace FSmartObjectTestHelpers
+{
+	UWorld* GetWorld()
+	{
+#if WITH_EDITOR
+		if (GIsEditor)
+		{
+			return GWorld;
+		}
+#endif // WITH_EDITOR
+		return GEngine->GetWorldContexts()[0].World();
+	}
+}
+	
 struct FSmartObjectTestBase : FAITestBase
 {
 	FSmartObjectRequestFilter TestFilter;
@@ -23,7 +36,7 @@ struct FSmartObjectTestBase : FAITestBase
 
 	virtual bool SetUp() override
 	{
-		UWorld* World = FAITestHelpers::GetWorld();
+		UWorld* World = FSmartObjectTestHelpers::GetWorld();
 		Subsystem = USmartObjectSubsystem::GetCurrent(World);
 		if (Subsystem == nullptr)
 		{
@@ -41,8 +54,8 @@ struct FSmartObjectTestBase : FAITestBase
 		// Create some smart objects
 		SOList =
 		{
-			NewAutoDestroyObject<USmartObjectComponent>(World),
-			NewAutoDestroyObject<USmartObjectComponent>(World)
+			//NewAutoDestroyObject<USmartObjectComponent>(World),
+			//NewAutoDestroyObject<USmartObjectComponent>(World)
 		};
 
 		// Register all to the subsystem

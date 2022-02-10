@@ -260,7 +260,7 @@ void FStateTreeBindableItemDetails::CustomizeHeader(TSharedRef<class IPropertyHa
 				StructPropertyHandle->CreateDefaultPropertyButtonWidgets()
 			]
 		]
-		.OverrideResetToDefault(ResetOverride);
+		;//.OverrideResetToDefault(ResetOverride);
 }
 
 bool FStateTreeBindableItemDetails::ShouldResetToDefault(TSharedPtr<IPropertyHandle> PropertyHandle) const

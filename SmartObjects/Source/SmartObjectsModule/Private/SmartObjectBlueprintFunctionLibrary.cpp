@@ -79,10 +79,12 @@ bool USmartObjectBlueprintFunctionLibrary::K2_SetSmartObjectEnabled(AActor* Smar
 //----------------------------------------------------------------------//
 bool USmartObjectBlueprintFunctionLibrary::K2_AddLooseGameplayTags(AActor* Actor, const FGameplayTagContainer& GameplayTags)
 {
-	return UAbilitySystemBlueprintLibrary::AddLooseGameplayTags(Actor, GameplayTags);
+	return false;
+	//return UAbilitySystemBlueprintLibrary::AddLooseGameplayTags(Actor, GameplayTags);
 }
 
 bool USmartObjectBlueprintFunctionLibrary::K2_RemoveLooseGameplayTags(AActor* Actor, const FGameplayTagContainer& GameplayTags)
 {
-	return UAbilitySystemBlueprintLibrary::RemoveLooseGameplayTags(Actor, GameplayTags);
+	return false;
+	//return UAbilitySystemBlueprintLibrary::RemoveLooseGameplayTags(Actor, GameplayTags);
 }

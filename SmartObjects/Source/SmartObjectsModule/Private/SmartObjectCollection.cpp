@@ -159,7 +159,7 @@ bool ASmartObjectCollection::AddSmartObject(USmartObjectComponent& SOComponent)
 
 	// We are not using asset path for partitioned world since they are not stable between editor and runtime.
 	// SubPathString should be enough since all actors are part of the main level.
-	if (World->IsPartitionedWorld())
+	if (false) //World->IsPartitionedWorld())
 	{
 		AssetPathString.Reset();
 	}

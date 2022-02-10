@@ -4,6 +4,7 @@
 #include "DebugRenderSceneProxy.h"
 #include "SmartObjectComponent.h"
 #include "ObjectEditorUtils.h"
+#include "Engine/CollisionProfile.h"
 
 //----------------------------------------------------------------------//
 // FSORenderingSceneProxy

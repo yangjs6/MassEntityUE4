@@ -35,6 +35,10 @@
 		{
 			"Name": "StructUtils",
 			"Enabled": true
+		},
+		{
+			"Name": "EngineUtils",
+			"Enabled": true
 		}
 	]
 }

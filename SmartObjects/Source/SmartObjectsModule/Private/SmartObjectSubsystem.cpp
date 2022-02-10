@@ -230,12 +230,12 @@ bool USmartObjectSubsystem::UnregisterSmartObject(USmartObjectComponent& SmartOb
 				bRemoveFromCollection = false;
 				UE_VLOG_UELOG(this, LogSmartObject, VeryVerbose, TEXT("%s not removed from collection that is built on demand only."), *GetNameSafe(SmartObjectComponent.GetOwner()));
 			}
-			// For partition world we never remove from the collection since it is built incrementally
-			else if(World.IsPartitionedWorld())
-			{
-				bRemoveFromCollection = false;
-				UE_VLOG_UELOG(this, LogSmartObject, VeryVerbose, TEXT("%s not removed from collection that is owned by partitioned world."), *GetNameSafe(SmartObjectComponent.GetOwner()));
-			}
+			// // For partition world we never remove from the collection since it is built incrementally
+			// else if(World.IsPartitionedWorld())
+			// {
+			// 	bRemoveFromCollection = false;
+			// 	UE_VLOG_UELOG(this, LogSmartObject, VeryVerbose, TEXT("%s not removed from collection that is owned by partitioned world."), *GetNameSafe(SmartObjectComponent.GetOwner()));
+			// }
 		}
 #endif // WITH_EDITOR
 
@@ -337,7 +337,7 @@ FSmartObjectClaimHandle USmartObjectSubsystem::Claim(const FSmartObjectRequestRe
 	return (SORuntime->ClaimSlot(ClaimHandle)) ? ClaimHandle : FSmartObjectClaimHandle::InvalidHandle;
 }
 
-const USmartObjectBehaviorDefinition* USmartObjectSubsystem::Use(const FSmartObjectClaimHandle& ClaimHandle, const TSubclassOf<USmartObjectBehaviorDefinition>& DefinitionClass)
+USmartObjectBehaviorDefinition* USmartObjectSubsystem::Use(const FSmartObjectClaimHandle& ClaimHandle, const TSubclassOf<USmartObjectBehaviorDefinition>& DefinitionClass)
 {
 	if (!ClaimHandle.IsValid())
 	{
@@ -351,7 +351,7 @@ const USmartObjectBehaviorDefinition* USmartObjectSubsystem::Use(const FSmartObj
 		return nullptr;
 	}
 
-	return Use(*SmartObjectRuntime, ClaimHandle, DefinitionClass);
+	return const_cast<USmartObjectBehaviorDefinition*>(Use(*SmartObjectRuntime, ClaimHandle, DefinitionClass));
 }
 
 const USmartObjectBehaviorDefinition* USmartObjectSubsystem::Use(FSmartObjectRuntime& SmartObjectRuntime, const FSmartObjectClaimHandle& ClaimHandle, const TSubclassOf<USmartObjectBehaviorDefinition>& DefinitionClass)
@@ -818,7 +818,7 @@ void USmartObjectSubsystem::ComputeBounds(const UWorld& World, ASmartObjectColle
 		}
 		else
 		{
-			Bounds = ALevelBounds::CalculateLevelBounds(PersistentLevel);
+			Bounds = ALevelBounds::CalculateLevelBounds((ULevel*)PersistentLevel);
 		}
 	}
 	else

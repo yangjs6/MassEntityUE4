@@ -4,7 +4,7 @@
 #include "MassEntitySubsystem.h"
 #include "MassExecutor.h"
 #include "Engine/World.h"
-namespace FTestHelpers
+namespace FExecutionTestHelpers
 {
 	UWorld* GetWorld()
 	{
@@ -23,7 +23,7 @@ namespace FTestHelpers
 //----------------------------------------------------------------------//
 bool FExecutionTestBase::SetUp()
 {
-	World = FTestHelpers::GetWorld();
+	World = FExecutionTestHelpers::GetWorld();
 	EntitySubsystem = NewObject<UMassEntitySubsystem>(World);
 	check(EntitySubsystem);
 	struct FSubsystemCollection_TestInit : FSubsystemCollectionBase

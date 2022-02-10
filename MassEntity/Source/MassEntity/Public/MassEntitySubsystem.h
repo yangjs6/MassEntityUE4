@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "Subsystems/WorldSubsystem.h"
+#include "Subsystems/WorldSubsystemEx.h"
 #include "MassEntityTypes.h"
 #include "MassProcessingTypes.h"
 #include "InstancedStruct.h"
@@ -24,7 +24,7 @@ enum class EMassFragmentAccess : uint8;
 
 //@TODO: Comment this guy
 UCLASS()
-class MASSENTITY_API UMassEntitySubsystem : public UWorldSubsystem
+class MASSENTITY_API UMassEntitySubsystem : public UWorldSubsystemEx
 {
 	GENERATED_BODY()
 
@@ -75,7 +75,7 @@ public:
 
 	//~USubsystem interface
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-	virtual void PostInitialize();// override;
+	virtual void PostInitialize() override;
 	virtual void Deinitialize() override;
 	//~End of USubsystem interface
 	

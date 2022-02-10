@@ -34,7 +34,7 @@ void UZoneGraphSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
 void UZoneGraphSubsystem::PostInitialize()
 {
-	//Super::PostInitialize();
+	Super::PostInitialize();
 
 	// Register Zone Graph data that we missed before the subsystem got initialized.
 	RegisterZoneGraphDataInstances();

@@ -1,6 +1,11 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "TickableWorldSubsystem.h"
+#include "Subsystems/WorldSubsystemEx.h"
+
+UWorld& UWorldSubsystemEx::GetWorldRef()
+{
+	return *GetWorld();
+}
 
 UTickableWorldSubsystem::UTickableWorldSubsystem()
 {

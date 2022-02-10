@@ -3,14 +3,34 @@
 #pragma once
 
 #include "Subsystems/WorldSubsystem.h"
-#include "TickableWorldSubsystem.generated.h"
+#include "WorldSubsystemEx.generated.h"
+
+/**
+* UWorldSubsystemEx
+*/
+UCLASS()
+class ENGINEUTILS_API UWorldSubsystemEx : public UWorldSubsystem
+{
+	GENERATED_BODY()
+
+public:
+	UWorldSubsystemEx() {}
+	
+	UWorld& GetWorldRef();
+	
+	virtual void PostInitialize() {}
+
+	virtual void OnWorldComponentsUpdated(UWorld& World) {}
+
+	virtual void OnWorldBeginPlay(UWorld& World) {}
+};
 
 /**
  * UTickableWorldSubsystem
  * Base class for auto instanced and initialized systems that share the lifetime of a UWorld and are ticking along with it
  */
 UCLASS(Abstract)
-class ENGINEUTILS_API UTickableWorldSubsystem : public UWorldSubsystem, public FTickableGameObject
+class ENGINEUTILS_API UTickableWorldSubsystem : public UWorldSubsystemEx, public FTickableGameObject
 {
 	GENERATED_BODY()
 

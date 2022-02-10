@@ -6,6 +6,7 @@ namespace UnrealBuildTool.Rules
 	{
 		public SmartObjectsTestSuite(ReadOnlyTargetRules Target) : base(Target)
 		{
+			CppStandard = CppStandardVersion.Cpp17;
 			PublicIncludePaths.AddRange(
 				new string[] {
 				}
@@ -15,6 +16,7 @@ namespace UnrealBuildTool.Rules
 				new[] {
 					"AITestSuite",
 					"Core",
+					"Engine",
 					"CoreUObject",
 					"GameplayTags",
 					"SmartObjectsModule",

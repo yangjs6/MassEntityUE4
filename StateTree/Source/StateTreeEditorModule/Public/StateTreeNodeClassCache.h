@@ -95,7 +95,7 @@ struct STATETREEEDITORMODULE_API FStateTreeNodeClassCache
 protected:
 	void OnAssetAdded(const FAssetData& AssetData);
 	void OnAssetRemoved(const FAssetData& AssetData);
-	void OnReloadComplete(EReloadCompleteReason Reason);
+	//void OnReloadComplete(EReloadCompleteReason Reason);
 	
 private:
 	void UpdateBlueprintClass(const FAssetData& AssetData);

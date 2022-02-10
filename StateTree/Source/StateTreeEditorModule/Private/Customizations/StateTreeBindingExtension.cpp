@@ -121,7 +121,7 @@ void FStateTreeBindingExtension::ExtendWidgetRow(FDetailWidgetRow& InWidgetRow, 
 	FStateTreeEditorPropertyBindings* EditorBindings = nullptr;
 
 	// Array of structs we can bind to.
-	TArray<FBindingContextStruct> Context;
+	//TArray<FBindingContextStruct> Context;
 	TArray<FStateTreeBindableStructDesc> AccessibleStructs;
 
 	// The struct and property where we're binding.
@@ -144,7 +144,7 @@ void FStateTreeBindingExtension::ExtendWidgetRow(FDetailWidgetRow& InWidgetRow, 
 			for (FStateTreeBindableStructDesc& StructDesc : AccessibleStructs)
 			{
 				const UStruct* Struct = StructDesc.Struct;
-				Context.Emplace(const_cast<UStruct*>(Struct), nullptr, FText::FromString(StructDesc.Name.ToString()));
+				//Context.Emplace(const_cast<UStruct*>(Struct), nullptr, FText::FromString(StructDesc.Name.ToString()));
 			}
 		}
 	}
@@ -206,11 +206,11 @@ void FStateTreeBindingExtension::ExtendWidgetRow(FDetailWidgetRow& InWidgetRow, 
 			return bCanBind;
 		});
 
-	Args.OnCanAcceptPropertyOrChildren = FOnCanBindProperty::CreateLambda([](FProperty* InProperty)
-		{
-			// Make only editor visible properties visible for binding.
-			return InProperty->HasAnyPropertyFlags(CPF_Edit);
-		});
+	// Args.OnCanAcceptPropertyOrChildren = FOnCanBindProperty::CreateLambda([](FProperty* InProperty)
+	// 	{
+	// 		// Make only editor visible properties visible for binding.
+	// 		return InProperty->HasAnyPropertyFlags(CPF_Edit);
+	// 	});
 
 	Args.OnCanBindToClass = FOnCanBindToClass::CreateLambda([](UClass* InClass)
 		{
@@ -315,10 +315,10 @@ void FStateTreeBindingExtension::ExtendWidgetRow(FDetailWidgetRow& InWidgetRow, 
 	Args.bAllowArrayElementBindings = false;
 	Args.bAllowUObjectFunctions = false;
 
-	InWidgetRow.ExtensionContent()
-	[
-		PropertyAccessEditor.MakePropertyBindingWidget(Context, Args)
-	];
+	// InWidgetRow.ExtensionContent()
+	// [
+	// 	PropertyAccessEditor.MakePropertyBindingWidget(Context, Args)
+	// ];
 }
 
 #undef LOCTEXT_NAMESPACE

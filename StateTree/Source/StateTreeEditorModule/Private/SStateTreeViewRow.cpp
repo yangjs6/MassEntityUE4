@@ -97,7 +97,7 @@ void SStateTreeViewRow::Construct(const FArguments& InArgs, const TSharedRef<STa
                         .Visibility(this, &SStateTreeViewRow::GetConditionVisibility)
                         [
                             SNew(SImage)
-							.Image(FAppStyle::Get().GetBrush("Icons.Help"))
+							//.Image(FAppStyle::Get().GetBrush("Icons.Help"))
 						]
 					]
 
@@ -332,7 +332,7 @@ void SStateTreeViewRow::Construct(const FArguments& InArgs, const TSharedRef<STa
 			.AutoWidth()
 			[
 				SNew(SImage)
-				.Image(FAppStyle::Get().GetBrush("Icons.Help"))
+				//.Image(FAppStyle::Get().GetBrush("Icons.Help"))
                 .ColorAndOpacity(FLinearColor(FColor(31,151,167)))
 				.Visibility(this, &SStateTreeViewRow::GetConditionalTransitionsVisibility)
 			]
