@@ -6,7 +6,7 @@
 #include "MassProcessor.h"
 #include "IndexedHandle.h"
 #include "MassLODTypes.h"
-#include "Subsystems/WorldSubsystem.h"
+#include "Subsystems/WorldSubsystemEx.h"
 
 #include "MassLODManager.generated.h"
 

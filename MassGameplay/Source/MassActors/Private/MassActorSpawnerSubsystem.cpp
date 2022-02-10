@@ -218,7 +218,7 @@ AActor* UMassActorSpawnerSubsystem::SpawnActor(const FStructView& SpawnRequestVi
 
 		SpawnedActor->FinishSpawning(SpawnRequest.Transform);
 		// The finish spawning might have failed and the spawned actor is destroyed.
-		if (IsValidChecked(SpawnedActor))
+		if (IsValid(SpawnedActor))
 		{
 			if (UMassAgentComponent* AgentComp = SpawnedActor->FindComponentByClass<UMassAgentComponent>())
 			{

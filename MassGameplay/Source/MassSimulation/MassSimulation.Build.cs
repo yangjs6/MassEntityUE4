@@ -6,6 +6,7 @@ namespace UnrealBuildTool.Rules
 	{
 		public MassSimulation(ReadOnlyTargetRules Target) : base(Target)
 		{
+			CppStandard = CppStandardVersion.Cpp17;
 			PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
 			PublicIncludePaths.AddRange(
@@ -30,6 +31,7 @@ namespace UnrealBuildTool.Rules
 					"NavigationSystem",
 					"MassEntity",
 					"StructUtils",
+					"EngineUtils",
 				}
 			);
 

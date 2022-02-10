@@ -6,6 +6,7 @@ namespace UnrealBuildTool.Rules
 	{
 		public MassRepresentation(ReadOnlyTargetRules Target) : base(Target)
 		{
+			CppStandard = CppStandardVersion.Cpp17;
 			PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
 			PublicIncludePaths.AddRange(
@@ -29,6 +30,7 @@ namespace UnrealBuildTool.Rules
 					"AIModule",
 					"MassEntity",
 					"StructUtils",
+					"EngineUtils",
 					"MassCommon",
 					"MassActors",
 					"MassSpawner",

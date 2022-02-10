@@ -152,8 +152,8 @@ protected:
 	UPROPERTY(Transient)
 	UMassEntitySubsystem* EntitySubsystem;
 
-	UPROPERTY(Transient)
-	UWorldPartitionSubsystem* WorldPartitionSubsystem;
+	// UPROPERTY(Transient)
+	// UWorldPartitionSubsystem* WorldPartitionSubsystem;
 
 	/** The time to wait before retrying a to spawn actor that failed */
 	float RetryMovedDistanceSq = 1000000.0f;

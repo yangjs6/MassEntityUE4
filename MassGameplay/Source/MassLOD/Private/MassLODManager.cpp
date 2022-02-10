@@ -2,8 +2,8 @@
 
 #include "MassLODManager.h"
 #include "GameFramework/PlayerController.h"
-#include "WorldPartition/WorldPartition.h"
-#include "WorldPartition/WorldPartitionStreamingSource.h"
+// #include "WorldPartition/WorldPartition.h"
+// #include "WorldPartition/WorldPartitionStreamingSource.h"
 #include "Engine/World.h"
 #include "MassSimulationSubsystem.h"
 
@@ -130,8 +130,8 @@ void UMassLODManager::SynchronizeViewers()
 	bool bNeedShrinking = false;
 
 	const UWorld* World = GetWorld();
-	UWorldPartition* WorldPartition = World ? World->GetWorldPartition() : nullptr;
-	const TArray<FWorldPartitionStreamingSource>& StreamingSources = WorldPartition ? WorldPartition->GetStreamingSources() : TArray<FWorldPartitionStreamingSource>();
+	// UWorldPartition* WorldPartition = World ? World->GetWorldPartition() : nullptr;
+	// const TArray<FWorldPartitionStreamingSource>& StreamingSources = WorldPartition ? WorldPartition->GetStreamingSources() : TArray<FWorldPartitionStreamingSource>();
 
 	// Go through the list and check validity and store the valid one into a map
 	TMap<uint32, FMassViewerHandle> LocalViewerMap;
@@ -148,10 +148,10 @@ void UMassLODManager::SynchronizeViewers()
 		{
 			LocalViewerMap.Add(GetTypeHash(ViewerInfo.PlayerController->GetFName()), ViewerInfo.Handle);
 		}
-		else if (!ViewerInfo.StreamingSourceName.IsNone() && StreamingSources.FindByPredicate([&ViewerInfo](const FWorldPartitionStreamingSource& Source){ return Source.Name == ViewerInfo.StreamingSourceName; }) != nullptr)
-		{
-			LocalViewerMap.Add(GetTypeHash(ViewerInfo.StreamingSourceName), ViewerInfo.Handle);
-		}
+		// else if (!ViewerInfo.StreamingSourceName.IsNone() && StreamingSources.FindByPredicate([&ViewerInfo](const FWorldPartitionStreamingSource& Source){ return Source.Name == ViewerInfo.StreamingSourceName; }) != nullptr)
+		// {
+		// 	LocalViewerMap.Add(GetTypeHash(ViewerInfo.StreamingSourceName), ViewerInfo.Handle);
+		// }
 		else
 		{
 			// Safe to remove while iterating as it is a sparse array with a free list
@@ -176,14 +176,14 @@ void UMassLODManager::SynchronizeViewers()
 			}
 		}
 
-		// Now go through all current streaming source and add if they do not exist
-		for (const FWorldPartitionStreamingSource& StreamingSource : StreamingSources)
-		{
-			if (LocalViewerMap.Remove(GetTypeHash(StreamingSource.Name)) == 0)
-			{
-				AddViewer(nullptr, StreamingSource.Name);
-			}
-		}
+		// // Now go through all current streaming source and add if they do not exist
+		// for (const FWorldPartitionStreamingSource& StreamingSource : StreamingSources)
+		// {
+		// 	if (LocalViewerMap.Remove(GetTypeHash(StreamingSource.Name)) == 0)
+		// 	{
+		// 		AddViewer(nullptr, StreamingSource.Name);
+		// 	}
+		// }
 	}
 
 	// Anything left in the map need to be removed from the list
@@ -213,7 +213,7 @@ void UMassLODManager::SynchronizeViewers()
 
 		if (ViewerInfo.PlayerController)
 		{
-			ViewerInfo.bEnabled = !WorldPartition || ViewerInfo.PlayerController->bEnableStreamingSource;
+			ViewerInfo.bEnabled = true;//!WorldPartition || ViewerInfo.PlayerController->bEnableStreamingSource;
 
 			FVector PlayerCameraLocation(ForceInitToZero);
 			FRotator PlayerCameraRotation(FRotator::ZeroRotator);
@@ -232,15 +232,15 @@ void UMassLODManager::SynchronizeViewers()
 		}
 		else
 		{
-			checkf(!ViewerInfo.StreamingSourceName.IsNone(), TEXT("Expecting to have a streamingsourcename if the playercontroller is null"));
-			const FWorldPartitionStreamingSource* StreamingSource = StreamingSources.FindByPredicate([&ViewerInfo](const FWorldPartitionStreamingSource& Source) { return Source.Name == ViewerInfo.StreamingSourceName; });
-			checkf(StreamingSource, TEXT("Expecting to be pointing to a valid streaming source"));
-			ViewerInfo.bEnabled = StreamingSource != nullptr;
-			if (StreamingSource)
-			{
-				ViewerInfo.Location = StreamingSource->Location;
-				ViewerInfo.Rotation = StreamingSource->Rotation;
-			}
+			// checkf(!ViewerInfo.StreamingSourceName.IsNone(), TEXT("Expecting to have a streamingsourcename if the playercontroller is null"));
+			// const FWorldPartitionStreamingSource* StreamingSource = StreamingSources.FindByPredicate([&ViewerInfo](const FWorldPartitionStreamingSource& Source) { return Source.Name == ViewerInfo.StreamingSourceName; });
+			// checkf(StreamingSource, TEXT("Expecting to be pointing to a valid streaming source"));
+			// ViewerInfo.bEnabled = StreamingSource != nullptr;
+			// if (StreamingSource)
+			// {
+			// 	ViewerInfo.Location = StreamingSource->Location;
+			// 	ViewerInfo.Rotation = StreamingSource->Rotation;
+			// }
 		}
 	}
 }

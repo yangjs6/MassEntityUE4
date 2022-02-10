@@ -15,8 +15,8 @@
 #include "MassRepresentationFragments.h"
 #include "MassRepresentationProcessor.h"
 #include "MassEntityView.h"
-#include "WorldPartition/WorldPartitionSubsystem.h"
-#include "WorldPartition/WorldPartitionRuntimeCell.h"
+// #include "WorldPartition/WorldPartitionSubsystem.h"
+// #include "WorldPartition/WorldPartitionRuntimeCell.h"
 
 int16 UMassRepresentationSubsystem::FindOrAddStaticMeshDesc(const FStaticMeshInstanceVisualizationDesc& Desc) const
 {
@@ -140,26 +140,26 @@ TSubclassOf<AActor> UMassRepresentationSubsystem::GetTemplateActorClass(const in
 
 bool UMassRepresentationSubsystem::IsCollisionLoaded(const FName TargetGrid, const FTransform& Transform) const
 {
-	if (!WorldPartitionSubsystem)
-	{
+	// if (!WorldPartitionSubsystem)
+	// {
 		// Assuming that all collisions are loaded if not using WorldPartition.
 		return true;
-	}
-
-	// @todo optimize by doing one query per cell
-	// Build a query source
-	TArray<FWorldPartitionStreamingQuerySource> QuerySources;
-	FWorldPartitionStreamingQuerySource& QuerySource = QuerySources.Emplace_GetRef();
-	QuerySource.bSpatialQuery = true;
-	QuerySource.Location = Transform.GetLocation();
-	QuerySource.Rotation = Transform.Rotator();
-	QuerySource.TargetGrid = TargetGrid;
-	QuerySource.bUseGridLoadingRange = false;
-	QuerySource.Radius = 1.f; // 1cm should be enough to know if grid is loaded at specific area
-	QuerySource.bDataLayersOnly = false;
-
-	// Execute query
-	return WorldPartitionSubsystem->IsStreamingCompleted(EWorldPartitionRuntimeCellState::Activated, QuerySources, /*bExactState*/ false);
+	// }
+	//
+	// // @todo optimize by doing one query per cell
+	// // Build a query source
+	// TArray<FWorldPartitionStreamingQuerySource> QuerySources;
+	// FWorldPartitionStreamingQuerySource& QuerySource = QuerySources.Emplace_GetRef();
+	// QuerySource.bSpatialQuery = true;
+	// QuerySource.Location = Transform.GetLocation();
+	// QuerySource.Rotation = Transform.Rotator();
+	// QuerySource.TargetGrid = TargetGrid;
+	// QuerySource.bUseGridLoadingRange = false;
+	// QuerySource.Radius = 1.f; // 1cm should be enough to know if grid is loaded at specific area
+	// QuerySource.bDataLayersOnly = false;
+	//
+	// // Execute query
+	// return WorldPartitionSubsystem->IsStreamingCompleted(EWorldPartitionRuntimeCellState::Activated, QuerySources, /*bExactState*/ false);
 }
 
 void UMassRepresentationSubsystem::ReleaseAllResources()
@@ -304,7 +304,7 @@ void UMassRepresentationSubsystem::Initialize(FSubsystemCollectionBase& Collecti
 	{
 		EntitySubsystem = UWorld::GetSubsystem<UMassEntitySubsystem>(World);
 		ActorSpawnerSubsystem = World->GetSubsystem<UMassActorSpawnerSubsystem>();
-		WorldPartitionSubsystem = World->GetSubsystem<UWorldPartitionSubsystem>();
+		// WorldPartitionSubsystem = World->GetSubsystem<UWorldPartitionSubsystem>();
 
 		if (Visualizer == nullptr)
 		{

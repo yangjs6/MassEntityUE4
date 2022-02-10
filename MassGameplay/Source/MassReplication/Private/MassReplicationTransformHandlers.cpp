@@ -3,7 +3,7 @@
 #include "MassReplicationTransformHandlers.h"
 #include "MassEntityQuery.h"
 #include "MassCommonFragments.h"
-#include "AIHelpers.h"
+#include "MassAIHelpers.h"
 
 void FMassReplicationProcessorTransformHandlerBase::AddRequirements(FMassEntityQuery& InQuery)
 {

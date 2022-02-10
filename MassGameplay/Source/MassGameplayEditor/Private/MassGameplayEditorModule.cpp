@@ -26,18 +26,18 @@ void FMassGameplayEditorModule::ShutdownModule()
 
 void FMassGameplayEditorModule::RegisterSectionMappings()
 {
-	static const FName PropertyEditor("PropertyEditor");
-	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>(PropertyEditor);
-
-	{
-		TSharedRef<FPropertySection> Section = PropertyModule.FindOrCreateSection("MassSpawner", "Mass", LOCTEXT("Mass", "Mass"));
-		Section->AddCategory("Mass");
-		Section->AddCategory("Debug");
-	}
-
-	{
-		TSharedRef<FPropertySection> Section = PropertyModule.FindOrCreateSection("MassAgentComponent", "Mass", LOCTEXT("Mass", "Mass"));
-		Section->AddCategory("Mass");
-	}
+	// static const FName PropertyEditor("PropertyEditor");
+	// FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>(PropertyEditor);
+	//
+	// {
+	// 	TSharedRef<FPropertySection> Section = PropertyModule.FindOrCreateSection("MassSpawner", "Mass", LOCTEXT("Mass", "Mass"));
+	// 	Section->AddCategory("Mass");
+	// 	Section->AddCategory("Debug");
+	// }
+	//
+	// {
+	// 	TSharedRef<FPropertySection> Section = PropertyModule.FindOrCreateSection("MassAgentComponent", "Mass", LOCTEXT("Mass", "Mass"));
+	// 	Section->AddCategory("Mass");
+	// }
 }
 #undef LOCTEXT_NAMESPACE

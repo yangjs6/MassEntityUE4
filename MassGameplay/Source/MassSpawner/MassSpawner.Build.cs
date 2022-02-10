@@ -6,6 +6,7 @@ namespace UnrealBuildTool.Rules
 	{
 		public MassSpawner(ReadOnlyTargetRules Target) : base(Target)
 		{
+			CppStandard = CppStandardVersion.Cpp17;
 			PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
 			PublicIncludePaths.AddRange(
@@ -30,6 +31,7 @@ namespace UnrealBuildTool.Rules
 					"MassCommon",
 					"MassSimulation",
 					"StructUtils",
+					"EngineUtils",
 					"ZoneGraph",
 				}
 			);

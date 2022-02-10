@@ -5,7 +5,7 @@
 #include "Delegates/IDelegateInstance.h"
 #include "MassProcessingTypes.h"
 #include "MassProcessingPhase.h"
-#include "Subsystems/WorldSubsystem.h"
+#include "Subsystems/WorldSubsystemEx.h"
 #include "MassSimulationSubsystem.generated.h"
 
 
@@ -16,7 +16,7 @@ class UMassProcessingPhaseManager;
 DECLARE_LOG_CATEGORY_EXTERN(LogMassSim, Log, All);
 
 UCLASS(config = Game, defaultconfig)
-class MASSSIMULATION_API UMassSimulationSubsystem : public UWorldSubsystem
+class MASSSIMULATION_API UMassSimulationSubsystem : public UWorldSubsystemEx
 {
 	GENERATED_BODY()
 public:

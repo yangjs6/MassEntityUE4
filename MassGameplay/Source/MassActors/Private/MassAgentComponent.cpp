@@ -65,7 +65,7 @@ void UMassAgentComponent::OnRegister()
 {
 	Super::OnRegister();
 
-	if (IsRunningCommandlet() || IsRunningCookCommandlet() || GIsCookerLoadingPackage)
+	if (IsRunningCommandlet() || /*IsRunningCookCommandlet() ||*/ GIsCookerLoadingPackage)
 	{
 		// ignore, we're not doing any registration while cooking or running a commandlet
 		return;

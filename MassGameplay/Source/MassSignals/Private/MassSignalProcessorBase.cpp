@@ -42,7 +42,7 @@ void UMassSignalProcessorBase::Execute(UMassEntitySubsystem& EntitySubsystem, FM
 	TArray<FEntitySignalRange>& ReceivedSignalRanges = ProcessingFrameBuffer.ReceivedSignalRanges;
 	TArray<FMassEntityHandle>& SignaledEntities = ProcessingFrameBuffer.SignaledEntities;
 
-	if (ReceivedSignalRanges.IsEmpty())
+	if (ReceivedSignalRanges.Num() <= 0)
 	{
 		return;
 	}

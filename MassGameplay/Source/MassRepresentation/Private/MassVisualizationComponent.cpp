@@ -51,7 +51,7 @@ void UMassVisualizationComponent::ConstructStaticMeshComponents()
 	for (FMassInstancedStaticMeshInfo& Info : InstancedStaticMeshInfos)
 	{
 		// Check if it is already created
-		if (!Info.InstancedStaticMeshComponents.IsEmpty())
+		if (Info.InstancedStaticMeshComponents.Num() > 0)
 		{
 			continue;
 		}
@@ -234,31 +234,31 @@ void UMassVisualizationComponent::EndVisualChanges()
 				}
 
 				InstancedStaticMeshComponent->PerInstanceSMData.SetNum(NewNumInstances, /*bAllowShrinking*/false);
-				InstancedStaticMeshComponent->PerInstancePrevTransform.SetNum(NewNumInstances, /*bAllowShrinking*/false);
+				//InstancedStaticMeshComponent->PerInstancePrevTransform.SetNum(NewNumInstances, /*bAllowShrinking*/false);
 
 				// Update PerInstanceSMData transforms
-				InstancedStaticMeshComponent->BatchUpdateInstancesTransforms(/*StartInstanceIndex*/0, SharedData.StaticMeshInstanceTransforms, SharedData.StaticMeshInstancePrevTransforms, /*bWorldSpace*/false, /*bMarkRenderStateDirty*/false);
+				InstancedStaticMeshComponent->BatchUpdateInstancesTransforms(/*StartInstanceIndex*/0, SharedData.StaticMeshInstanceTransforms, /*SharedData.StaticMeshInstancePrevTransforms,*/ /*bWorldSpace*/false, /*bMarkRenderStateDirty*/false);
 
-				// Nanite ISMC? 
-				TObjectPtr<UStaticMesh> StaticMeshObjectPtr = InstancedStaticMeshComponent->GetStaticMesh();
-				FStaticMeshRenderData* StaticMeshRenderData = nullptr;
-				if (UStaticMesh* StaticMesh = StaticMeshObjectPtr.Get())
-				{
-					StaticMeshRenderData = StaticMesh->GetRenderData();
-				}
-				const bool bNaniteISMC = UseNanite(InstancedStaticMeshComponent->GetScene()->GetShaderPlatform()) && StaticMeshRenderData && StaticMeshRenderData->NaniteResources.PageStreamingStates.Num();
-				if (bNaniteISMC)
-				{
-
-					// ISMC currently rebuilds PerInstanceRenderData regardless of whether it's using a 
-					// Nanite::FSceneProxy which doesn't actually use this data. So to skip that we 
-					// reset the InstanceUpdateCmdBuffer here after BatchUpdateInstancesTransforms has
-					// marked it dirty but before CreateSceneProxy checks it
-					// @todo This should be in ISMC code
-					InstancedStaticMeshComponent->InstanceUpdateCmdBuffer.Cmds.Reset();
-					InstancedStaticMeshComponent->InstanceUpdateCmdBuffer.NumAdds = 0;
-					InstancedStaticMeshComponent->InstanceUpdateCmdBuffer.NumEdits = 0;
-				}
+				// // Nanite ISMC? 
+				// TObjectPtr<UStaticMesh> StaticMeshObjectPtr = InstancedStaticMeshComponent->GetStaticMesh();
+				// FStaticMeshRenderData* StaticMeshRenderData = nullptr;
+				// if (UStaticMesh* StaticMesh = StaticMeshObjectPtr.Get())
+				// {
+				// 	StaticMeshRenderData = StaticMesh->GetRenderData();
+				// }
+				// const bool bNaniteISMC = UseNanite(InstancedStaticMeshComponent->GetScene()->GetShaderPlatform()) && StaticMeshRenderData && StaticMeshRenderData->NaniteResources.PageStreamingStates.Num();
+				// if (bNaniteISMC)
+				// {
+				//
+				// 	// ISMC currently rebuilds PerInstanceRenderData regardless of whether it's using a 
+				// 	// Nanite::FSceneProxy which doesn't actually use this data. So to skip that we 
+				// 	// reset the InstanceUpdateCmdBuffer here after BatchUpdateInstancesTransforms has
+				// 	// marked it dirty but before CreateSceneProxy checks it
+				// 	// @todo This should be in ISMC code
+				// 	InstancedStaticMeshComponent->InstanceUpdateCmdBuffer.Cmds.Reset();
+				// 	InstancedStaticMeshComponent->InstanceUpdateCmdBuffer.NumAdds = 0;
+				// 	InstancedStaticMeshComponent->InstanceUpdateCmdBuffer.NumEdits = 0;
+				// }
 
 				// Dirty render state
 				InstancedStaticMeshComponent->MarkRenderStateDirty();

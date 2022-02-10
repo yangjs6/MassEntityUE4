@@ -7,7 +7,7 @@
 #include "MassEntityView.h"
 #include "MassClientBubbleHandler.h"
 #include "MassCommonFragments.h"
-#include "AIHelpers.h"
+#include "MassAIHelpers.h"
 
 #include "MassReplicationTransformHandlers.generated.h"
 

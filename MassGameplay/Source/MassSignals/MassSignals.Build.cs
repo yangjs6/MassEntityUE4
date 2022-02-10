@@ -6,6 +6,7 @@ namespace UnrealBuildTool.Rules
 	{
 		public MassSignals(ReadOnlyTargetRules Target) : base(Target)
 		{
+			CppStandard = CppStandardVersion.Cpp17;
 			PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
 			PublicIncludePaths.AddRange(
@@ -28,6 +29,7 @@ namespace UnrealBuildTool.Rules
 					"Engine",
 					"MassEntity",
 					"StructUtils",
+					"EngineUtils",
 				}
 			);
 

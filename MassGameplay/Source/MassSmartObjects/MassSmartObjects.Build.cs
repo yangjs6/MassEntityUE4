@@ -6,6 +6,7 @@ namespace UnrealBuildTool.Rules
 	{
 		public MassSmartObjects(ReadOnlyTargetRules Target) : base(Target)
 		{
+			CppStandard = CppStandardVersion.Cpp17;
 			PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
 			PublicIncludePaths.AddRange(
@@ -35,6 +36,7 @@ namespace UnrealBuildTool.Rules
 					"MassSpawner",
 					"SmartObjectsModule",
 					"StructUtils",
+					"EngineUtils",
 					"ZoneGraph",
 					"ZoneGraphAnnotations"
 				}

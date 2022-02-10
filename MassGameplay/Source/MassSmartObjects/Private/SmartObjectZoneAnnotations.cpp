@@ -130,7 +130,7 @@ void USmartObjectZoneAnnotations::TickAnnotation(const float DeltaTime, FZoneGra
 
 	for (FSmartObjectAnnotationData& Data : SmartObjectAnnotationDataArray)
 	{
-		if (Data.bInitialTaggingCompleted || !Data.IsValid() || Data.ObjectToEntryPointLookup.IsEmpty())
+		if (Data.bInitialTaggingCompleted || !Data.IsValid() || Data.ObjectToEntryPointLookup.Num() > 0)
 		{
 			continue;
 		}

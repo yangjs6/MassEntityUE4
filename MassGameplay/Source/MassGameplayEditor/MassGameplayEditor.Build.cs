@@ -6,6 +6,7 @@ namespace UnrealBuildTool.Rules
 	{
 		public MassGameplayEditor(ReadOnlyTargetRules Target) : base(Target)
 		{
+			CppStandard = CppStandardVersion.Cpp17;
 			PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
 			PublicIncludePaths.AddRange(

@@ -466,7 +466,7 @@ void AMassSpawner::SpawnAtLocations(TConstArrayView<FVector> Locations)
 
 void AMassSpawner::DoDespawning()
 {
-	if (AllSpawnedEntities.IsEmpty())
+	if (AllSpawnedEntities.Num() <= 0)
 	{
 		return;
 	}

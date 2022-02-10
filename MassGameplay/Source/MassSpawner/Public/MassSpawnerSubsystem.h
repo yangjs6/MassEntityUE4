@@ -4,7 +4,7 @@
 
 #include "MassEntitySubsystem.h"
 #include "InstancedStruct.h"
-#include "Subsystems/WorldSubsystem.h"
+#include "Subsystems/WorldSubsystemEx.h"
 #include "MassSpawnerSubsystem.generated.h"
 
 class UMassEntitySubsystem;
@@ -16,7 +16,7 @@ struct FMassEntityTemplateID;
 class UMassSimulationSubsystem;
 
 UCLASS()
-class MASSSPAWNER_API UMassSpawnerSubsystem : public UWorldSubsystem
+class MASSSPAWNER_API UMassSpawnerSubsystem : public UWorldSubsystemEx
 {
 	GENERATED_BODY()
 

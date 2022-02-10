@@ -74,6 +74,56 @@ void TMassLODCollector<FLODLogic>::PrepareExecution(TConstArrayView<FViewerInfo>
 	CacheViewerInformation(ViewersInfo);
 }
 
+
+inline float DistanceToVolume(const FConvexVolume& Volume,const FVector& Point)
+{
+	checkSlow(PermutedPlanes.Num() % 4 == 0);
+
+	VectorRegister VMinimumDistance = MakeVectorRegister(-BIG_NUMBER, -BIG_NUMBER, -BIG_NUMBER, -BIG_NUMBER);
+
+	// Load the origin & radius
+	VectorRegister VPoint = VectorLoadFloat3(&Point);
+	VectorRegister VMinDistance = VMinimumDistance;
+	// Splat point into 3 vectors
+	VectorRegister VPointX = VectorReplicate(VPoint, 0);
+	VectorRegister VPointY = VectorReplicate(VPoint, 1);
+	VectorRegister VPointZ = VectorReplicate(VPoint, 2);
+	// Since we are moving straight through get a pointer to the data
+	const FPlane* RESTRICT PermutedPlanePtr = (FPlane*)Volume.PermutedPlanes.GetData();
+	// Process four planes at a time until we have < 4 left
+	for (int32 Count = 0; Count < Volume.PermutedPlanes.Num(); Count += 4)
+	{
+		// Load 4 planes that are already all Xs, Ys, ...
+		VectorRegister PlanesX = VectorLoadAligned(PermutedPlanePtr);
+		PermutedPlanePtr++;
+		VectorRegister PlanesY = VectorLoadAligned(PermutedPlanePtr);
+		PermutedPlanePtr++;
+		VectorRegister PlanesZ = VectorLoadAligned(PermutedPlanePtr);
+		PermutedPlanePtr++;
+		VectorRegister PlanesW = VectorLoadAligned(PermutedPlanePtr);
+		PermutedPlanePtr++;
+		// Calculate the distance (x * x) + (y * y) + (z * z) - w
+		VectorRegister DistX = VectorMultiply(VPointX, PlanesX);
+		VectorRegister DistY = VectorMultiplyAdd(VPointY, PlanesY, DistX);
+		VectorRegister DistZ = VectorMultiplyAdd(VPointZ, PlanesZ, DistY);
+		VectorRegister Distance = VectorSubtract(DistZ, PlanesW);
+
+		VMinDistance = VectorMax(Distance, VMinDistance);
+	}
+
+	const VectorRegister VMinDistanceWXYZ = VectorSwizzle(VMinDistance, 3, 0, 1, 2);
+	const VectorRegister t0 = VectorMax(VMinDistance, VMinDistanceWXYZ);
+	const VectorRegister VMinDistanceZWXY = VectorSwizzle(VMinDistance, 2, 3, 0, 1);
+	const VectorRegister t1 = VectorMax(t0, VMinDistanceZWXY);
+	const VectorRegister VMinDistanceYZWX = VectorSwizzle(VMinDistance, 1, 2, 3, 0);
+	const VectorRegister t2 = VectorMax(t1, VMinDistanceYZWX);
+
+	float MinDistance;
+	VectorStoreFloat1(t2, &MinDistance);
+	return MinDistance;
+}
+
+
 template <typename FLODLogic>
 template <typename TTransformFragment, 
 		  typename TViewerInfoFragment, 
@@ -127,7 +177,7 @@ void TMassLODCollector<FLODLogic>::CollectLODInfo(FMassExecutionContext& Context
 
 				if (bCollectDistanceToFrustum)
 				{
-					const float DistanceToFrustum = Viewer.Frustum.DistanceTo(EntityLocation);
+					const float DistanceToFrustum = DistanceToVolume(Viewer.Frustum, EntityLocation);
 					SetDistanceToFrustum<bCollectDistanceToFrustumPerViewer>(EntityInfoPerViewer, ViewerIdx, DistanceToFrustum);
 					if (ClosestDistanceToFrustum > DistanceToFrustum)
 					{
